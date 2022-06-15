@@ -1,36 +1,36 @@
-import { Time } from "@angular/common";
+import { Time } from '@angular/common';
 
 export interface Recipe {
-    id: number,
-    img: string,
-    name: string,
-    category: Category,
-    meal: Meal,
-    products: ProductInRecipe,
-    time: Time,
-    difficulty: string,
-    description: string,
+	category: Category;
+	description: string;
+	difficulty: string;
+	id: number;
+	img: string;
+	meal: Meal;
+	name: string;
+	products: ProductInRecipe;
+	time: Time;
 }
 
 export interface ProductInRecipe {
-    id: number,
-    count: number,
-    unit: string,
+	count: number;
+	id: number;
+	unit: string;
 }
 
 export const enum Category {
-    firstСourse,
-    secondСourse,
-    saladAndSnack,
-    baking,
-    cakes,
-    desserts,
-    drinks,
+	FirstСourse,
+	SecondСourse,
+	SaladAndSnack,
+	Baking,
+	Cakes,
+	Desserts,
+	Drinks,
 }
 
-export const enum Meal{
-    breakfast,
-    lunch,
-    dinner,
-    snack
+export const enum Meal {
+	Breakfast,
+	Lunch,
+	Dinner,
+	Snack,
 }
