@@ -12,6 +12,10 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormModule } from './modules/form/form.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -28,6 +32,11 @@ import { environment } from '../environments/environment';
 		NgxsFormPluginModule.forRoot(),
 		NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
 		NgxsStoragePluginModule.forRoot({ key: ['forms'] }),
+		FormsModule,
+		ReactiveFormsModule,
+		FormModule,
+		BrowserAnimationsModule,
+		MatSliderModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
