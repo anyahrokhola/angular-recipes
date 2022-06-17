@@ -1,11 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { FormModule } from './modules/form/form.module';
 
 describe('AppComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [RouterTestingModule],
+			imports: [RouterTestingModule, FormModule, NoopAnimationsModule],
 			declarations: [AppComponent],
 		}).compileComponents();
 	});
@@ -14,18 +16,5 @@ describe('AppComponent', () => {
 		const fixture = TestBed.createComponent(AppComponent);
 		const app = fixture.componentInstance;
 		expect(app).toBeTruthy();
-	});
-
-	it(`should have as title 'angular-recipes'`, () => {
-		const fixture = TestBed.createComponent(AppComponent);
-		const app = fixture.componentInstance;
-		expect(app.title).toEqual('angular-recipes');
-	});
-
-	it('should render title', () => {
-		const fixture = TestBed.createComponent(AppComponent);
-		fixture.detectChanges();
-		const compiled = fixture.nativeElement as HTMLElement;
-		expect(compiled.querySelector('.content span')?.textContent).toContain('angular-recipes app is running!');
 	});
 });

@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 @NgModule({
 	declarations: [InputTextComponent],
 	imports: [BrowserModule, MatInputModule],
-	exports: [InputTextComponent],
+	exports: [InputTextComponent, MatInputModule],
 	providers: [],
 })
 export class FormModule {}
