@@ -2,14 +2,20 @@ import { Time } from '@angular/common';
 
 export interface Recipe {
 	category: Category;
-	description: string;
-	difficulty: string;
+	description: RecipeStep[];
+	difficulty: Difficulty;
 	id: number;
 	img: string;
 	meal: Meal;
 	name: string;
 	products: ProductInRecipe;
 	time: Time;
+}
+
+export interface RecipeStep {
+	description: string;
+	id: number;
+	index: number;
 }
 
 export interface ProductInRecipe {
@@ -26,6 +32,12 @@ export const enum Category {
 	Cakes,
 	Desserts,
 	Drinks,
+}
+
+export const enum Difficulty {
+	Easy,
+	Medium,
+	Hard,
 }
 
 export const enum Meal {
