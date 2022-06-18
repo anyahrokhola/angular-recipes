@@ -24,25 +24,25 @@ export interface ProductInRecipe {
 	unit: string;
 }
 
-export const enum Category {
-	FirstCourse,
-	SecondCourse,
-	SaladAndSnack,
-	Baking,
-	Cakes,
-	Desserts,
-	Drinks,
+export enum Category {
+	FirstCourse = 'firstCourse',
+	SecondCourse = 'secondCourse',
+	SaladAndSnack = 'saladAndSnack',
+	Baking = 'baking',
+	Cakes = 'cakes',
+	Desserts = 'desserts',
+	Drinks = 'drinks',
 }
 
-export const enum Difficulty {
-	Easy,
-	Medium,
-	Hard,
+export enum Difficulty {
+	Easy = 'easy',
+	Medium = 'medium',
+	Hard = 'hard',
 }
 
-export const enum Meal {
-	Breakfast,
-	Lunch,
-	Dinner,
-	Snack,
+export enum Meal {
+	Breakfast = 'breakfast',
+	Lunch = 'lunch',
+	Dinner = 'dinner',
+	Snack = 'snack',
 }

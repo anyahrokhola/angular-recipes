@@ -5,16 +5,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 	selector: 'input-text',
 	templateUrl: './input-text.component.html',
 	styleUrls: ['./input-text.component.scss'],
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: InputTextComponent,
-			multi: true,
-		},
-	],
+	providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: InputTextComponent, multi: true }],
 })
 export class InputTextComponent implements ControlValueAccessor {
 	@Input() public label!: string;
+
 	public val = '';
 
 	public onChange!: (value: string) => void;
