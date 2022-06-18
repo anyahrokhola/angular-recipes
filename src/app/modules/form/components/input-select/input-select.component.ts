@@ -21,13 +21,13 @@ export class InputSelectComponent<Value extends string | number = string | numbe
 	public disabled = false;
 
 	private onTouch!: () => void;
-	private onChange!: (value: Value) => void;
+	private onChange!: (value: Nullable<Value>) => void;
 
 	public writeValue(value: Nullable<Value>): void {
 		this.val = value;
 	}
 
-	public registerOnChange(fn: (value: Value) => void): void {
+	public registerOnChange(fn: (value: Nullable<Value>) => void): void {
 		this.onChange = fn;
 	}
 
