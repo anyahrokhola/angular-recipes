@@ -36,7 +36,6 @@
 		"@angular-eslint/template-parser": "13.5.0",
 		"@angular/cli": "~13.0.4",
 		"@angular/compiler-cli": "~13.0.0",
-		"@ngneat/dialog": "^2.1.1",
 		"@ngneat/spectator": "^10.0.1",
 		"@ngxs/devtools-plugin": "^3.7.4",
 		"@ngxs/form-plugin": "^3.7.4",

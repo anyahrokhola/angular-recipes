@@ -25,8 +25,8 @@ export interface ProductInRecipe {
 }
 
 export const enum Category {
-	FirstСourse,
-	SecondСourse,
+	FirstCourse,
+	SecondCourse,
 	SaladAndSnack,
 	Baking,
 	Cakes,
