@@ -39,10 +39,12 @@ export class InputSelectComponent<Value extends string | number = string | numbe
 		this.disabled = isDisabled;
 	}
 
+	public onSelectOpened(): void {
+		this.onTouch();
+	}
+
 	public onValueChange(event: MatSelectChange): void {
 		this.val = event.value;
-
-		this.onTouch();
 		this.onChange(event.value);
 	}
 }

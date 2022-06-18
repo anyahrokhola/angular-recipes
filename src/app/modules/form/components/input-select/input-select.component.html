@@ -1,7 +1,12 @@
 <mat-form-field appearance="fill">
 	<mat-label>{{ label }}</mat-label>
 
-	<mat-select [value]="val" [disabled]="disabled" (selectionChange)="onValueChange($event)">
+	<mat-select
+		[value]="val"
+		[disabled]="disabled"
+		(opened)="onSelectOpened()"
+		(selectionChange)="onValueChange($event)"
+	>
 		<mat-option *ngFor="let option of options; let i = index" [value]="option.value" [disabled]="option.disabled">
 			<ng-container
 				*ngTemplateOutlet="customItemRef || defaultItem; context: { $implicit: option, index: i }"
