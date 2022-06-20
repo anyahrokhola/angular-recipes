@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { InputTextComponent } from './components/input-text/input-text.component';
+
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
+import { InputTextComponent } from './components/input-text/input-text.component';
+import { InputSelectComponent } from './components/input-select/input-select.component';
 
 @NgModule({
-	declarations: [InputTextComponent],
-	imports: [BrowserModule, MatInputModule],
-	exports: [InputTextComponent, MatInputModule],
-	providers: [],
+	imports: [BrowserModule, MatInputModule, MatSelectModule],
+	declarations: [InputTextComponent, InputSelectComponent],
+	exports: [InputTextComponent, InputSelectComponent],
 })
 export class FormModule {}

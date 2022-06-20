@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DialogModule } from '@ngneat/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -21,9 +21,8 @@ import { FormModule } from './modules/form/form.module';
 	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
+		MatButtonModule,
 		AppRoutingModule,
-
-		DialogModule.forRoot(),
 
 		NgxsModule.forRoot([], {
 			developmentMode: !environment.production,
