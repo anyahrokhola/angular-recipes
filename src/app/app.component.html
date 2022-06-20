@@ -3,3 +3,25 @@
 </span>
 
 <router-outlet></router-outlet>
+
+<form [formGroup]="form">
+	<div class="row">
+		<div class="col-md-4">
+			<input-select label="Meal" formControlName="meal" [options]="mealOptions"></input-select>
+		</div>
+		<div class="col-md-4">
+			<input-select label="Category" formControlName="category" [options]="categoryOptions"></input-select>
+		</div>
+		<div class="col-md-4">
+			<input-select label="Difficulty" formControlName="difficulty" [options]="difficultyOptions"></input-select>
+		</div>
+
+		<div class="col-md-4">
+			<input-select label="Example" formControlName="test" [options]="difficultyOptions">
+				<ng-template #customItem let-option let-i="index">{{ option.text }} ({{ i + 1 }})</ng-template>
+			</input-select>
+		</div>
+	</div>
+</form>
+
+<button mat-raised-button (click)="onResetClick()">Reset</button>
