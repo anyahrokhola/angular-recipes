@@ -9,8 +9,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class InputTextComponent implements ControlValueAccessor {
 	@Input() public label!: string;
+	@Input() public placeholder!: string;
 
-	public val = '';
+	public val?: Nullable<string>;
+	public disabled = false;
 
 	public onChange!: (value: string) => void;
 	public onTouch!: () => void;
@@ -25,9 +27,19 @@ export class InputTextComponent implements ControlValueAccessor {
 		this.onTouch = fn;
 	}
 
-	public handleInput($MouseEvent: any): void {
-		this.val = $MouseEvent.target.value;
-		this.onChange(this.val);
+	public setDisabledState(isDisabled: boolean): void {
+		this.disabled = isDisabled;
+	}
+	public handleInput(event: Event): void {
+		if (event.target instanceof HTMLInputElement) {
+			this.val = event.target.value;
+			this.onChange(this.val);
+			// eslint-disable-next-line no-console
+			console.log(this.val);
+		}
+	}
+
+	public onTouched(): void {
 		this.onTouch();
 	}
 }

@@ -107,7 +107,8 @@
 		}
 	},
 	"defaultProject": "angular-recipes",
-	"cli": {
+  "cli": {
+    "analytics": "2459c604-5581-4b6c-9317-dc1e5a7e2d4a",
 		"defaultCollection": "@ngneat/spectator"
 	}
 }

@@ -6,9 +6,10 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { InputTextComponent } from './components/input-text/input-text.component';
 import { InputSelectComponent } from './components/input-select/input-select.component';
+import { ModalModule } from '../modal/modal.module';
 
 @NgModule({
-	imports: [BrowserModule, MatInputModule, MatSelectModule],
+	imports: [BrowserModule, MatInputModule, MatSelectModule, ModalModule],
 	declarations: [InputTextComponent, InputSelectComponent],
 	exports: [InputTextComponent, InputSelectComponent],
 })

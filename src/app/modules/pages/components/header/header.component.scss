@@ -1,0 +1,39 @@
+$color: #6e56fb;
+
+:host {
+	padding: 5px 0;
+	margin-bottom: 20px;
+	box-shadow: 1px 1px 10px grey;
+}
+
+.logo-wrapper {
+	img {
+		width: 70px;
+		height: 70px;
+	}
+}
+
+.menu {
+	display: flex;
+	margin: 0;
+
+	li {
+		margin-right: 35px;
+		list-style: none;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	a {
+		font-weight: 500;
+		text-decoration: none;
+		color: black;
+		transition: color 150ms;
+
+		&:hover {
+			color: $color;
+		}
+	}
+}

@@ -10,6 +10,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { ModalModule } from './modules/modal/modal.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('AppComponent', () => {
 	let spectator: Spectator<AppComponent>;
@@ -24,6 +26,8 @@ describe('AppComponent', () => {
 			FormModule,
 			FormsModule,
 			ReactiveFormsModule,
+			ModalModule,
+			MatDialogModule, // todo remove matdialog
 		],
 		component: AppComponent,
 	});
