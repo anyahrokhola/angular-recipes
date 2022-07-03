@@ -21,6 +21,7 @@ import { environment } from '@env/environment';
 import { ModalModule } from './modules/modal/modal.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PagesModule } from './modules/pages/pages.module';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -44,6 +45,7 @@ import { PagesModule } from './modules/pages/pages.module';
 		ModalModule,
 		MatDialogModule,
 		PagesModule,
+		HomeModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

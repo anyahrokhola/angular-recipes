@@ -1,0 +1,39 @@
+.button-box {
+	position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 210px;
+	height: 65px;
+
+	text-align: center;
+	text-transform: uppercase;
+	cursor: pointer;
+    line-height: 30px;
+
+	&:hover svg rect {
+		stroke-width: 5;
+		stroke-dasharray: 55, 350;
+		stroke-dashoffset: 55;
+	}
+}
+
+a {
+	font-size: 20px;
+	letter-spacing: 3px;
+    color: white;
+}
+
+svg {
+    
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+svg rect {
+
+	stroke: white;
+	stroke-width: 2;
+	transition: 0.8s;
+	stroke-dasharray: 400, 0;
+}

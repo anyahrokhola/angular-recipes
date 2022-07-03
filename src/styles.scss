@@ -1,3 +1,10 @@
+@import './assets/styles/typography.scss';
+@import './assets/styles/variables.scss';
+
 @import 'app/modules/tooltip/scss/tooltip';
 
 @import './assets/styles/input.scss';
+
+body{
+    overflow-x: hidden;
+}
