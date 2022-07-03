@@ -1,0 +1,30 @@
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+:host{
+    background-color: #333;
+    color: #ffffff8f;
+    padding: 60px 0;
+
+
+    @media screen and (max-width: $lg) {
+        text-align: center;
+	}
+}
+
+
+.copyright{
+    line-height: 30px;
+    font-size: 24px;
+
+    @media screen and (max-width: $xl) {
+        font-size: 22px;
+	}
+
+    @media screen and (max-width: $lg) {
+        font-size: 18px;
+	}
+
+}
