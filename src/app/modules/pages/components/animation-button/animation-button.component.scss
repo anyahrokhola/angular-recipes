@@ -25,15 +25,13 @@ a {
 }
 
 svg {
-    
 	position: absolute;
 	top: 0;
 	left: 0;
 }
 svg rect {
-
 	stroke: white;
 	stroke-width: 2;
 	transition: 0.8s;
-	stroke-dasharray: 400, 0;
+	stroke-dasharray: 400, 0; 
 }

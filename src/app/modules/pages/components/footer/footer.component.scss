@@ -1,10 +1,8 @@
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1200px;
+@import 'media-variables.scss';
+$main-color: #333;
 
 :host{
-    background-color: #333;
+    background-color: $main-color;
     color: #ffffff8f;
     padding: 60px 0;
 

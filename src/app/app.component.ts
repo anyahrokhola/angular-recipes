@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { OptionService } from './services';
-import { MatDialog } from '@angular/material/dialog';
-import { InputTextComponent } from './modules/form/components/input-text/input-text.component';
+import { ModalService } from './modules/modal/services/modal.service';
 
 @Component({
 	selector: 'app-root',
@@ -22,7 +21,7 @@ export class AppComponent implements OnInit {
 		test: new FormControl(),
 	});
 
-	constructor(private optionService: OptionService, private dialog: MatDialog) {}
+	constructor(private optionService: OptionService, private modalService: ModalService) {}
 
 	public ngOnInit(): void {
 		// eslint-disable-next-line no-console
@@ -34,10 +33,6 @@ export class AppComponent implements OnInit {
 	}
 
 	public openDialog() {
-		// eslint-disable-next-line no-console
-		this.dialog.open(InputTextComponent, {
-			height: '400px',
-			width: '600px',
-		});
+		this.modalService.openDialog();
 	}
 }

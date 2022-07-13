@@ -1,9 +1,4 @@
-@import url('../../../../../assets/styles/typography.scss');
-
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1200px;
+@import 'media-variables.scss';
 
 :host {
 	display: flex;

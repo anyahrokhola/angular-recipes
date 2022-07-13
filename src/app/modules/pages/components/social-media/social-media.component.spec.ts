@@ -1,25 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { SocialMediaComponent } from './social-media.component';
 
 describe('SocialMediaComponent', () => {
-  let component: SocialMediaComponent;
-  let fixture: ComponentFixture<SocialMediaComponent>;
+	let spectator: Spectator<SocialMediaComponent>;
+	const createComponent = createComponentFactory(SocialMediaComponent);
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SocialMediaComponent ]
-    })
-    .compileComponents();
-  });
+	beforeEach(() => (spectator = createComponent()));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SocialMediaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [SocialMediaComponent],
+		}).compileComponents();
+	});
 });
