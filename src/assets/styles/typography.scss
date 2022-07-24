@@ -43,29 +43,6 @@ a {
 	text-decoration: none;
 }
 
-a.special {
-	position: relative;
-}
-
-a.special::before {
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 2px;
-	border-radius: 4px;
-	background-color: black;
-	bottom: -5px;
-	left: 0;
-	transform-origin: right;
-	transform: scaleX(0);
-	transition: transform 0.3s ease-in-out;
-}
-
-a.special:hover::before {
-	transform-origin: left;
-	transform: scaleX(1);
-}
-
 li {
 	list-style: none;
 }

@@ -11,6 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ModalModule } from './modules/modal/modal.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { IntroComponent } from './modules/home/components/intro/intro.component';
+import { RecipeListComponent } from './modules/pages/components/recipe-list/recipe-list.component';
+import { RecipeItemComponent } from './modules/pages/components/recipe-item/recipe-item.component';
 
 describe('AppComponent', () => {
 	let spectator: Spectator<AppComponent>;
@@ -26,8 +30,10 @@ describe('AppComponent', () => {
 			FormsModule,
 			ReactiveFormsModule,
 			ModalModule,
+			MatDialogModule,
 		],
 		component: AppComponent,
+		declarations: [IntroComponent, RecipeListComponent, RecipeItemComponent],
 	});
 
 	beforeEach(() => (spectator = createComponent()));

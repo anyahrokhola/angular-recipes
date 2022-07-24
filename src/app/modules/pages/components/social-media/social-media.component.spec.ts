@@ -1,4 +1,3 @@
-import { TestBed } from '@angular/core/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { SocialMediaComponent } from './social-media.component';
@@ -9,9 +8,7 @@ describe('SocialMediaComponent', () => {
 
 	beforeEach(() => (spectator = createComponent()));
 
-	beforeEach(async () => {
-		await TestBed.configureTestingModule({
-			declarations: [SocialMediaComponent],
-		}).compileComponents();
+	it('should create', () => {
+		expect(spectator.component).toBeTruthy();
 	});
 });
