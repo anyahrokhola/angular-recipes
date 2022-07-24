@@ -43,6 +43,10 @@ describe('TooltipDirective', () => {
 	let spectator: SpectatorDirective<TooltipDirective>;
 	const createDirective = createDirectiveFactory(TooltipDirective);
 
+	beforeEach(() => {
+		spyOn(console, 'warn');
+	});
+
 	it('should show/hide tooltip', async () => {
 		spectator = createDirective(`<button tooltip="Some text">Hover me</button>`);
 		tooltipPO = new TooltipPO(spectator);
@@ -55,14 +59,20 @@ describe('TooltipDirective', () => {
 	});
 
 	it('should render tooltip from template', async () => {
-		spectator = createDirective(`
-			<ng-template #tooltip><b>Bold text</b></ng-template>
-			<button [tooltip]="tooltip">Hover me</button>
-		`);
+		spectator = createDirective(
+			`
+				<ng-template #tooltip><b>Bold {{ templateText }}</b></ng-template>
+				<button [tooltip]="tooltip">Hover me</button>
+			`,
+			{ hostProps: { templateText: 'text' } }
+		);
 		tooltipPO = new TooltipPO(spectator);
 
 		await tooltipPO.show();
 		expect(tooltipPO.content.innerHTML).toEqual('<div><b>Bold text</b></div>');
+
+		spectator.setHostInput({ templateText: 'dynamic text' });
+		expect(tooltipPO.content.innerHTML).toEqual('<div><b>Bold dynamic text</b></div>');
 	});
 
 	it('should update direction', async () => {
@@ -83,9 +93,11 @@ describe('TooltipDirective', () => {
 
 		await tooltipPO.show();
 		expect(tooltipPO.element.textContent).toEqual('Some text');
+		expect(console.warn).not.toHaveBeenCalled();
 
 		spectator.setInput({ tooltip: 'Other tooltip' });
 		expect(tooltipPO.element.textContent).toEqual('Other tooltip');
+		expect(console.warn).toHaveBeenCalledOnceWith(jasmine.any(String));
 	});
 
 	it('should not disable tooltip', async () => {
@@ -102,8 +114,6 @@ describe('TooltipDirective', () => {
 	});
 
 	it('should warn about disabled attribute', () => {
-		spyOn(console, 'warn');
-
 		spectator = createDirective(`<button tooltip="Text" disabled>Hover me</button>`);
 
 		expect(console.warn).toHaveBeenCalledOnceWith(jasmine.any(String));

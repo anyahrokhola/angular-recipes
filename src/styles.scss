@@ -1,10 +1,9 @@
-@import 'typography.scss';
-@import 'media-variables.scss';
+@import './normilize.scss';
+
+@import './typography.scss';
+@import './media-variables.scss';
+
+@import './button.scss';
+@import './input.scss';
 
 @import 'app/modules/tooltip/scss/tooltip';
-
-@import 'input.scss';
-
-body{
-    overflow-x: hidden;
-}

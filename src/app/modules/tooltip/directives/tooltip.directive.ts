@@ -1,5 +1,6 @@
 import {
 	AfterViewInit,
+	ApplicationRef,
 	Directive,
 	ElementRef,
 	Input,
@@ -8,7 +9,7 @@ import {
 	OnChanges,
 	SimpleChanges,
 } from '@angular/core';
-import tippy, { Instance } from 'tippy.js';
+import tippy, { sticky, Instance } from 'tippy.js';
 import { environment } from '@env/environment';
 
 @Directive({
@@ -21,19 +22,29 @@ export class TooltipDirective implements OnChanges, AfterViewInit, OnDestroy {
 
 	private inst?: Instance;
 
-	constructor(private readonly elementRef: ElementRef) {}
+	constructor(private readonly applicationRef: ApplicationRef, private readonly elementRef: ElementRef) {}
 
 	public ngOnChanges({ tooltip, tooltipDisabled, tooltipDirection }: SimpleChanges): void {
+		if (!this.inst) {
+			return;
+		}
+
 		if (tooltipDisabled) {
 			this.toggleDisable(this.tooltipDisabled);
 		}
 
 		if (tooltipDirection) {
-			this.inst?.setProps({ placement: this.tooltipDirection });
+			this.inst.setProps({ placement: this.tooltipDirection });
 		}
 
 		if (tooltip) {
-			this.inst?.setProps({ content: this.getTooltipContent(this.tooltip) });
+			this.inst.setContent(this.getTooltipContent(this.tooltip));
+
+			if (!environment.production) {
+				console.warn(
+					'[tooltip]: If you have some dynamic tooltip content its more performant to use <ng-template and update content inside ng-template as it not rerenders tippyjs.'
+				);
+			}
 		}
 	}
 
@@ -60,6 +71,7 @@ export class TooltipDirective implements OnChanges, AfterViewInit, OnDestroy {
 			arrow: true,
 			zIndex: 99,
 			maxWidth: 280,
+			sticky: true,
 			allowHTML: true,
 			interactive: true,
 			hideOnClick: false,
@@ -67,17 +79,20 @@ export class TooltipDirective implements OnChanges, AfterViewInit, OnDestroy {
 			animation: 'scale-subtle', // @see src/app/modules/tooltip/scss/_tooltip.scss
 			placement: this.tooltipDirection,
 			content: this.getTooltipContent(this.tooltip),
+			plugins: [sticky],
 		});
 	}
 
 	private getTooltipContent(tooltip: TemplateRef<unknown> | string): HTMLElement | string {
-		if (typeof tooltip === 'string') {
+		if (!(tooltip instanceof TemplateRef)) {
 			return tooltip;
 		}
 
 		const content = document.createElement('div');
-		const templateNodes = tooltip.createEmbeddedView({}).rootNodes as Node[];
-		content.append(...templateNodes);
+		const templateView = tooltip.createEmbeddedView({});
+		this.applicationRef.attachView(templateView);
+
+		content.append(...templateView.rootNodes);
 
 		return content;
 	}
