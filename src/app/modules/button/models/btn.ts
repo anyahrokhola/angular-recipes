@@ -1,1 +1,1 @@
-export type BtnSize = 'xs' | 'sm' | 'md' | 'lg';
+export type BtnSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
