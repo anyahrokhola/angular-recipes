@@ -5,6 +5,7 @@
 	text-align: center;
 	cursor: pointer;
 	border-width: 0;
+	background-color: transparent;
 	transition: 0.3s;
 
 	&[disabled],
@@ -36,7 +37,6 @@ $button-outline-white-theme-color: black;
 
 .button-outline {
 	position: relative;
-	background-color: transparent;
 	color: $button-outline-white-theme-color;
 
 	&:hover {
@@ -64,5 +64,28 @@ $button-outline-white-theme-color: black;
 			transition: 0.8s;
 			stroke-dasharray: 300%, 0;
 		}
+	}
+}
+
+.button-link{
+	position: relative;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		border-radius: 4px;
+		background-color: black;
+		bottom: -5px;
+		left: 0;
+		transform-origin: right;
+		transform: scaleX(0);
+		transition: transform 0.3s ease-in-out;
+	}
+
+	&:hover::before {
+		transform-origin: left;
+		transform: scaleX(1);
 	}
 }
