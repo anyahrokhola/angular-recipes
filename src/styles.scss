@@ -1,3 +1,6 @@
-@import 'app/modules/tooltip/scss/tooltip';
+@import './normilize.scss';
 
-@import './assets/styles/input.scss';
+@import './button.scss';
+@import './input.scss';
+
+@import 'app/modules/tooltip/scss/tooltip';

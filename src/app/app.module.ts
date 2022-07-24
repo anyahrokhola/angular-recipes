@@ -13,6 +13,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AppComponent } from './app.component';
 
 import { FormModule } from './modules/form/form.module';
+import { ButtonModule } from './modules/button/button.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,6 +39,7 @@ import { environment } from '@env/environment';
 		FormModule,
 		BrowserAnimationsModule,
 		MatSliderModule,
+		ButtonModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
