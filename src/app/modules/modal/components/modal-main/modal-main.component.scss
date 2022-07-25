@@ -16,6 +16,8 @@
 
 .body {
 	position: relative;
+	display: flex;
+	align-items: center;
 	padding: 20px 0;
 	overflow-y: auto;
 	flex: 1;
@@ -28,7 +30,7 @@
 
 	::ng-deep [slot='footer'] {
 		display: flex;
-		justify-content: end;
+		justify-content: center;
 		width: 100%;
 	}
 }

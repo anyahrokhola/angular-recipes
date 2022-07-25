@@ -1,4 +1,4 @@
-$color: #6e56fb;
+@import 'variables/index';
 
 :host {
 	padding: 5px 0;
@@ -27,5 +27,17 @@ li {
 
 	&:last-child {
 		margin-right: 0;
+	}
+}
+
+.user{
+	font-size: 20px;
+	background-color: transparent;
+	border-radius: 25px;
+	border: none;
+	transition: 300ms;
+
+	&:hover{
+		color: $color-accent;
 	}
 }

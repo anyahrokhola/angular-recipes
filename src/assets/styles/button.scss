@@ -34,14 +34,15 @@
 	&.xl {
 		@include button-size(210px, 65px, $text-button-xl);
 	}
-}
 
-$button-outline-dark-theme-color: white;
-$button-outline-white-theme-color: black;
+	&.accent {
+		@include button-color($button-accent-color);
+	}
+}
 
 .button-outline {
 	position: relative;
-	color: $button-outline-dark-theme-color;
+	color: $button-default-color;
 
 	&:hover {
 		background-color: rgba(238, 236, 236, 0.5);
@@ -63,17 +64,25 @@ $button-outline-white-theme-color: black;
 		left: 0;
 
 		rect {
-			stroke: $button-outline-dark-theme-color;
+			stroke: $button-default-color;
 			stroke-width: 2;
 			transition: 0.8s;
 			stroke-dasharray: 300%, 0;
 		}
 	}
+
+	&.accent {
+		svg {
+			rect {
+				stroke: $button-accent-color;
+			}
+		}
+	}
 }
 
-.button-link{
+.button-link {
 	position: relative;
-	
+
 	&::before {
 		content: '';
 		position: absolute;
@@ -94,12 +103,12 @@ $button-outline-white-theme-color: black;
 	}
 }
 
-.button-intro{
+.button-intro {
 	text-transform: uppercase;
 	background-color: transparent;
 	letter-spacing: 3px;
-	
-	&:hover{
+
+	&:hover {
 		background-color: transparent;
 	}
 }
