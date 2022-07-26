@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PagesModule } from './modules/pages/pages.module';
 import { HomeModule } from './modules/home/home.module';
 import { RecipesModule } from './modules/recipes/recipes.module';
+import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -50,6 +51,7 @@ import { RecipesModule } from './modules/recipes/recipes.module';
 		HomeModule,
 		ButtonModule,
 		RecipesModule,
+		AddRecipeModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

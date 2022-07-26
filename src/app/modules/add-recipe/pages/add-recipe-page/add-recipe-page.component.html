@@ -1,0 +1,33 @@
+<h2>Add your recipe</h2>
+<form>
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-12">
+				<input-select label="Category" formControlName="category"></input-select>
+			</div>
+			<div class="col-6">
+				<input-select label="Meal" formControlName="meal"></input-select>
+			</div>
+			<div class="col-6">
+				<input-select label="Difficulty" formControlName="difficulty"></input-select>
+			</div>
+			<div class="col-12">
+				<input-text label="Img" placeholder="Img"></input-text>
+			</div>
+			<div class="col-12">
+				<input-text label="Description" placeholder="Description"></input-text>
+			</div>
+
+			<div class="col-6">
+				<input-text label="Name" placeholder="Name"></input-text>
+			</div>
+			<div class="col-6">
+				<input-text label="Time" placeholder="Time"></input-text>
+			</div>
+		</div>
+        <div class="button-wrapper">
+            <button btnOutline color="accent" size="lg" type="submit">Create</button>
+        </div>
+		
+	</div>
+</form>
