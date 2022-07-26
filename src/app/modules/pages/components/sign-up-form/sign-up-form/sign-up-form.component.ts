@@ -16,6 +16,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SignUpFormComponent {
 	public matcher = new MyErrorStateMatcher();
+	public submitted = false;
+
 	public signUpForm = new FormGroup({
 		name: new FormControl('', Validators.required),
 		lastName: new FormControl('', Validators.required),
@@ -49,4 +51,20 @@ export class SignUpFormComponent {
 		this.signUpForm.reset();
 		alert('Форма отправлена');
 	}
+
+	// public async onSubmit() {
+	// 	this.submitted = true;
+	// 	if (this.signUpForm.valid) {
+	// 		try {
+	// 			const data = this.signUpForm.value;
+	// 			await this.httpClient.post('http://localhost:1337/user-dates', data).toPromise();
+	// 			this.signUpForm.reset();
+	// 			this.signUpForm.markAsUntouched();
+	// 			this.submitted = false;
+	// 			alert('Повідомлення успішно відправлено!');
+	// 		} catch (error) {
+	// 			alert('Щось пішло не так =(');
+	// 		}
+	// 	}
+	// }
 }

@@ -19,7 +19,7 @@ export class ModalService {
 
 	public openSignUpForm() {
 		this.dialog.open(SignUpFormComponent, {
-			height: '500px',
+			height: '560px',
 			width: '500px',
 		});
 	}

@@ -11,6 +11,7 @@ import { SignUpFormComponent } from './components/sign-up-form/sign-up-form/sign
 import { ModalModule } from '../modal/modal.module';
 import { FormModule } from '../form/form.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
 	declarations: [
@@ -21,7 +22,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		RecipeListComponent,
 		SignUpFormComponent,
 	],
-	imports: [BrowserModule, CommonModule, ButtonModule, ModalModule, FormModule, FormsModule, ReactiveFormsModule],
+	imports: [
+		BrowserModule,
+		CommonModule,
+		ButtonModule,
+		ModalModule,
+		FormModule,
+		FormsModule,
+		ReactiveFormsModule,
+		AppRoutingModule,
+	],
 	exports: [
 		HeaderComponent,
 		FooterComponent,
