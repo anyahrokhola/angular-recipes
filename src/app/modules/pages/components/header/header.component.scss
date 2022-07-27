@@ -1,0 +1,31 @@
+$color: #6e56fb;
+
+:host {
+	padding: 5px 0;
+	box-shadow: 1px 1px 10px grey;
+	overflow-x: hidden;
+}
+
+img {
+	width: 90px;
+	height: 90px;
+}
+
+.menu {
+	display: flex;
+	margin: 0;
+
+	a {
+		font-size: 18px;
+		font-weight: 500;
+		color: black;
+	}
+}
+
+li {
+	margin-right: 35px;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}

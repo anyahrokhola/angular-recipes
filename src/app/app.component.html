@@ -1,10 +1,12 @@
-<span>
+<header></header>
+<intro></intro>
+<!-- <span>
 	<button tooltip="Some tooltip text">Hover on me</button>
-</span>
+</span> -->
 
 <router-outlet></router-outlet>
 
-<form [formGroup]="form">
+<!-- <form [formGroup]="form">
 	<div class="row">
 		<div class="col-md-4">
 			<input-select label="Meal" formControlName="meal" [options]="mealOptions"></input-select>
@@ -22,7 +24,10 @@
 			</input-select>
 		</div>
 	</div>
-</form>
+</form> -->
 
-<button btnOutline (click)="onResetClick()">Test hover</button>
-<button btnLink>Test link</button>
+<!-- <button mat-raised-button (click)="onResetClick()">Reset</button> -->
+<recipe-list></recipe-list>
+
+<footer></footer>
+<!-- <input-text [formControl]="nameControl" label="Recipe" placeholder="Name"></input-text> -->

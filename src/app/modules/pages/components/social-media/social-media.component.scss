@@ -1,0 +1,28 @@
+@import 'media-variables.scss';
+
+:host {
+	display: flex;
+	justify-content: end;
+
+    @media screen and (max-width: $md) {
+        justify-content: center;
+        margin-top: 20px;
+	}
+}
+
+a {
+	margin-right: 30px;
+	&:last-child {
+		margin-right: 0;
+	}
+}
+svg {
+	width: 50px;
+	height: 50px;
+	fill: white;
+	transition: 300ms;
+
+	&:hover {
+		transform: translateY(-20px);
+	}
+}

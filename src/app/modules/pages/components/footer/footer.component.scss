@@ -1,0 +1,28 @@
+@import 'media-variables.scss';
+$main-color: #333;
+
+:host{
+    background-color: $main-color;
+    color: #ffffff8f;
+    padding: 60px 0;
+
+
+    @media screen and (max-width: $lg) {
+        text-align: center;
+	}
+}
+
+
+.copyright{
+    line-height: 30px;
+    font-size: 24px;
+
+    @media screen and (max-width: $xl) {
+        font-size: 22px;
+	}
+
+    @media screen and (max-width: $lg) {
+        font-size: 18px;
+	}
+
+}

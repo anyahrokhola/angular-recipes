@@ -19,6 +19,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from '@env/environment';
+import { ModalModule } from './modules/modal/modal.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PagesModule } from './modules/pages/pages.module';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -39,6 +43,10 @@ import { environment } from '@env/environment';
 		FormModule,
 		BrowserAnimationsModule,
 		MatSliderModule,
+		ModalModule,
+		MatDialogModule,
+		PagesModule,
+		HomeModule,
 		ButtonModule,
 	],
 	providers: [],

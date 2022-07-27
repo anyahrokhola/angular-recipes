@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { OptionService } from './services';
+import { ModalService } from './modules/modal/services/modal.service';
 
 @Component({
 	selector: 'app-root',
@@ -11,6 +12,7 @@ export class AppComponent implements OnInit {
 	public readonly mealOptions = this.optionService.getMealOptions();
 	public readonly categoryOptions = this.optionService.getCategoryOptions();
 	public readonly difficultyOptions = this.optionService.getDifficultyOptions();
+	public nameControl = new FormControl();
 
 	public readonly form = new FormGroup({
 		meal: new FormControl(),
@@ -19,7 +21,7 @@ export class AppComponent implements OnInit {
 		test: new FormControl(),
 	});
 
-	constructor(private optionService: OptionService) {}
+	constructor(private optionService: OptionService, private modalService: ModalService) {}
 
 	public ngOnInit(): void {
 		// eslint-disable-next-line no-console
@@ -28,5 +30,9 @@ export class AppComponent implements OnInit {
 
 	public onResetClick(): void {
 		this.form.reset();
+	}
+
+	public openDialog() {
+		this.modalService.openDialog();
 	}
 }
