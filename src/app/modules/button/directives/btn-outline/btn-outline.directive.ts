@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, HostBinding, Input, OnChanges } from '@angular/core';
-import { BtnSize } from '../../models/btn';
+import { BtnColor, BtnSize } from '../../models/btn';
 import { btnSizes } from '../../constants';
 
 @Directive({
@@ -8,15 +8,16 @@ import { btnSizes } from '../../constants';
 })
 export class BtnOutlineDirective implements OnChanges, AfterViewInit {
 	@Input() public size: BtnSize = 'md';
+	@Input() public color: BtnColor | '' = '';
 
-	@HostBinding('class') public btnClasses = `${this.size}`;
+	@HostBinding('class') public btnClasses = `${this.size} ${this.color}`;
 
 	private svg!: SVGSVGElement;
 
 	constructor(private elementRef: ElementRef<HTMLButtonElement>) {}
 
 	public ngOnChanges(): void {
-		this.btnClasses = `${this.size}`;
+		this.btnClasses = `${this.size} ${this.color}`;
 
 		if (this.svg) {
 			this.applySvgSize(this.size);

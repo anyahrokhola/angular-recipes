@@ -17,7 +17,8 @@ describe('BtnOutlineDirective', () => {
 	});
 
 	it('should add classes', () => {
-		expect(spectator.element.classList.toString()).toContain('button button-outline');
+		expect(spectator.element).toHaveClass('button');
+		expect(spectator.element).toHaveClass('button-outline');
 	});
 
 	it('should create svg', () => {

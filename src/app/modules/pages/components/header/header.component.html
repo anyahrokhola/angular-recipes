@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row align-items-center">
-		<div class="col-8">
+		<div class="col-6">
 			<div class="logo-wrapper">
 				<a href="/"><img src="assets/logo.png" alt="" /></a>
 			</div>
@@ -8,11 +8,18 @@
 		<div class="col-4">
 			<nav>
 				<ul class="menu">
-					<li><a btnLink href="">Головна</a></li>
-					<li><a btnLink href="">Рецепти</a></li>
-					<li><a btnLink href="">Додати рецепти</a></li>
+					<li>
+						<a routerLink="/" btnLink>Головна</a>
+					</li>
+					<li><a routerLink="/recipes" btnLink>Рецепти</a></li>
+					<li><a routerLink="/add-recipe-page" btnLink>Додати рецепти</a></li>
 				</ul>
 			</nav>
+		</div>
+		<div class="col-2">
+			<button class="user" (click)="openDialog()">
+				<i class="fa-solid fa-user-plus"></i>
+			</button>
 		</div>
 	</div>
 </div>

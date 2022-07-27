@@ -3,3 +3,7 @@
 	min-height: $height;
 	font-size: $font-size;
 }
+
+@mixin button-color($color) {
+	color: $color;
+}

@@ -1,12 +1,12 @@
-@import 'media-variables.scss';
+@import 'variables/index';
 
 :host {
 	display: flex;
 	justify-content: end;
 
-    @media screen and (max-width: $md) {
-        justify-content: center;
-        margin-top: 20px;
+	@media screen and (max-width: $md) {
+		justify-content: center;
+		margin-top: 20px;
 	}
 }
 
@@ -17,8 +17,8 @@ a {
 	}
 }
 svg {
-	width: 50px;
-	height: 50px;
+	width: 35px;
+	height: 35px;
 	fill: white;
 	transition: 300ms;
 

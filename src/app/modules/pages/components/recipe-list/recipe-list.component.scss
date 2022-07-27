@@ -1,4 +1,14 @@
+@import 'typography.scss';
+
 :host{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.items-wrapper{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }

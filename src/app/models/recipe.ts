@@ -1,5 +1,3 @@
-import { Time } from '@angular/common';
-
 export interface Recipe {
 	category: Category;
 	description: RecipeStep[];
@@ -9,7 +7,7 @@ export interface Recipe {
 	meal: Meal;
 	name: string;
 	products: ProductInRecipe;
-	time: Time;
+	time: number;
 }
 
 export interface RecipeStep {

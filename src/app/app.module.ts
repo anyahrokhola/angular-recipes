@@ -23,6 +23,8 @@ import { ModalModule } from './modules/modal/modal.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PagesModule } from './modules/pages/pages.module';
 import { HomeModule } from './modules/home/home.module';
+import { RecipesModule } from './modules/recipes/recipes.module';
+import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -48,6 +50,8 @@ import { HomeModule } from './modules/home/home.module';
 		PagesModule,
 		HomeModule,
 		ButtonModule,
+		RecipesModule,
+		AddRecipeModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

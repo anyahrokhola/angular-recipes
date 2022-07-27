@@ -16,19 +16,21 @@
 
 .body {
 	position: relative;
+	display: flex;
+	align-items: center;
 	padding: 20px 0;
-	overflow-y: auto;
+	overflow-x: hidden;
 	flex: 1;
 }
 
 .footer {
 	position: relative;
-	padding-top: 15px;
+	padding: 15px;
 	border-top: 1px solid #eee;
 
 	::ng-deep [slot='footer'] {
 		display: flex;
-		justify-content: end;
+		justify-content: center;
 		width: 100%;
 	}
 }

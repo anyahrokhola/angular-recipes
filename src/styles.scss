@@ -1,9 +1,11 @@
-@import './normilize.scss';
+@import 'normilize';
 
-@import './typography.scss';
-@import './media-variables.scss';
+@import 'typography';
 
-@import './button.scss';
-@import './input.scss';
+@import 'button';
+@import 'input';
+@import 'modal';
+
+@import 'utils/index';
 
 @import 'app/modules/tooltip/scss/tooltip';

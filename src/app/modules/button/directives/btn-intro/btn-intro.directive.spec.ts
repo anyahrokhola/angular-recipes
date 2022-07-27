@@ -17,6 +17,8 @@ describe('BtnIntroDirective', () => {
 	});
 
 	it('should add classes', () => {
-		expect(spectator.element.classList.toString()).toContain('button button-outline button-intro');
+		expect(spectator.element).toHaveClass('button');
+		expect(spectator.element).toHaveClass('button-outline');
+		expect(spectator.element).toHaveClass('button-intro');
 	});
 });

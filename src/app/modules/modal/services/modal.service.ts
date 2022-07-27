@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { InputTextComponent } from '../../form/components/input-text/input-text.component';
+import { Injectable, Type } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { modalSizes } from '../constants/modal.constants';
+import { ModalOptions } from '../models/modal-options';
 
 @Injectable({
 	providedIn: 'root',
@@ -8,11 +9,13 @@ import { InputTextComponent } from '../../form/components/input-text/input-text.
 export class ModalService {
 	constructor(private dialog: MatDialog) {}
 
-	public openDialog() {
-		// eslint-disable-next-line no-console
-		this.dialog.open(InputTextComponent, {
-			height: '400px',
-			width: '600px',
+	public open<R = unknown>(component: Type<any>, options: Partial<ModalOptions> = {}): MatDialogRef<any, R> {
+		const modalOptions: ModalOptions = { size: 'md', ...options };
+		const modalSize = modalSizes[modalOptions.size];
+
+		return this.dialog.open(component, {
+			height: `${modalSize.height}px`,
+			width: `${modalSize.width}px`,
 		});
 	}
 }
