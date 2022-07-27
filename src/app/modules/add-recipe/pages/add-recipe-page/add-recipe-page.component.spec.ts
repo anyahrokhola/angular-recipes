@@ -1,25 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { FormModule } from 'src/app/modules/form/form.module';
 
 import { AddRecipePageComponent } from './add-recipe-page.component';
 
 describe('AddRecipePageComponent', () => {
-  let component: AddRecipePageComponent;
-  let fixture: ComponentFixture<AddRecipePageComponent>;
+	let spectator: Spectator<AddRecipePageComponent>;
+	const createComponent = createComponentFactory({
+		imports: [FormModule, MatInputModule, MatSelectModule, MatButtonModule, FormsModule, ReactiveFormsModule],
+		component: AddRecipePageComponent,
+		declarations: [],
+	});
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AddRecipePageComponent ]
-    })
-    .compileComponents();
-  });
+	beforeEach(() => (spectator = createComponent()));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AddRecipePageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(spectator.component).toBeTruthy();
+	});
 });

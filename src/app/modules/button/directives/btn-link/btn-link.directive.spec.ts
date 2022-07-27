@@ -17,6 +17,7 @@ describe('BtnLinkDirective', () => {
 	});
 
 	it('should add classes', () => {
-		expect(spectator.element.classList.toString()).toContain('button button-link');
+		expect(spectator.element).toHaveClass('button');
+		expect(spectator.element).toHaveClass('button-link');
 	});
 });

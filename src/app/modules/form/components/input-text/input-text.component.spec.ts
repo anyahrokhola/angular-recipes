@@ -12,7 +12,7 @@ describe('InputTextComponent', () => {
 	});
 
 	beforeEach(() => {
-		nameControl = new FormControl('Jopa');
+		nameControl = new FormControl('Test');
 
 		spectator = createHost('<input-text label="Test label" [formControl]="nameControl"></input-text>', {
 			hostProps: { nameControl },
@@ -29,7 +29,7 @@ describe('InputTextComponent', () => {
 
 	it('should exist no empty input', () => {
 		const inputElement = spectator.query('input') as HTMLInputElement;
-		expect(inputElement.value).toBe('Jopa');
+		expect(inputElement.value).toBe('Test');
 	});
 
 	it('should be focused', () => {

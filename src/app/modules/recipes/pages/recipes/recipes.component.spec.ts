@@ -1,25 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { RecipeItemComponent } from 'src/app/modules/pages/components/recipe-item/recipe-item.component';
+import { RecipeListComponent } from 'src/app/modules/pages/components/recipe-list/recipe-list.component';
 
 import { RecipesComponent } from './recipes.component';
 
 describe('RecipesComponent', () => {
-  let component: RecipesComponent;
-  let fixture: ComponentFixture<RecipesComponent>;
+	let spectator: Spectator<RecipesComponent>;
+	const createComponent = createComponentFactory({
+		imports: [],
+		component: RecipesComponent,
+		declarations: [RecipeListComponent, RecipeItemComponent],
+	});
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ RecipesComponent ]
-    })
-    .compileComponents();
-  });
+	beforeEach(() => (spectator = createComponent()));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RecipesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(spectator.component).toBeTruthy();
+	});
 });

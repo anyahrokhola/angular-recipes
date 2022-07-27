@@ -34,8 +34,6 @@ export class InputTextComponent implements ControlValueAccessor {
 		if (event.target instanceof HTMLInputElement) {
 			this.val = event.target.value;
 			this.onChange(this.val);
-			// eslint-disable-next-line no-console
-			console.log(this.val);
 		}
 	}
 

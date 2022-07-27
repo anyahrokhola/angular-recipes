@@ -1,25 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { FormModule } from 'src/app/modules/form/form.module';
+import { ModalModule } from 'src/app/modules/modal/modal.module';
+import { RecipeItemComponent } from 'src/app/modules/pages/components/recipe-item/recipe-item.component';
+import { RecipeListComponent } from 'src/app/modules/pages/components/recipe-list/recipe-list.component';
 
 import { SignUpFormComponent } from './sign-up-form.component';
 
 describe('SignUpFormComponent', () => {
-  let component: SignUpFormComponent;
-  let fixture: ComponentFixture<SignUpFormComponent>;
+	let spectator: Spectator<SignUpFormComponent>;
+	const createComponent = createComponentFactory({
+		imports: [FormModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, ModalModule],
+		component: SignUpFormComponent,
+		declarations: [RecipeListComponent, RecipeItemComponent],
+	});
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SignUpFormComponent ]
-    })
-    .compileComponents();
-  });
+	beforeEach(() => (spectator = createComponent()));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SignUpFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(spectator.component).toBeTruthy();
+	});
 });

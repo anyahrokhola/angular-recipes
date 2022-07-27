@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalService } from 'src/app/modules/modal/services/modal.service';
+import { SignUpFormComponent } from '../sign-up-form/sign-up-form/sign-up-form.component';
 
 @Component({
 	selector: 'header',
@@ -10,6 +11,6 @@ export class HeaderComponent {
 	constructor(private modalService: ModalService) {}
 
 	public openDialog() {
-		this.modalService.openSignUpForm();
+		this.modalService.open(SignUpFormComponent, { size: 'lg' });
 	}
 }
