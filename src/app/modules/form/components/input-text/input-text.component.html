@@ -2,9 +2,9 @@
 	<mat-label>{{ label }}</mat-label>
 	<input
 		matInput
-		placeholder="{{ placeholder }}"
 		[value]="val"
 		[disabled]="disabled"
+		[placeholder]="placeholder"
 		(input)="handleInput($event)"
 		(focus)="onTouched()"
 	/>
