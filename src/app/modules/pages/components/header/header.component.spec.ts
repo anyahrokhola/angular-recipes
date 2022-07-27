@@ -3,7 +3,7 @@ import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { HeaderComponent } from './header.component';
 
-describe('SocialMediaComponent', () => {
+describe('HeaderComponent', () => {
 	let spectator: Spectator<HeaderComponent>;
 	const createComponent = createComponentFactory({
 		imports: [MatDialogModule],

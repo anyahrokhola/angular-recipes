@@ -1,4 +1,11 @@
 <mat-form-field class="example-full-width" appearance="fill">
 	<mat-label>{{ label }}</mat-label>
-	<input matInput placeholder="{{ placeholder }}" [value]="val" (input)="handleInput($event)" (focus)="onTouched()"/>
+	<input
+		matInput
+		placeholder="{{ placeholder }}"
+		[value]="val"
+		[disabled]="disabled"
+		(input)="handleInput($event)"
+		(focus)="onTouched()"
+	/>
 </mat-form-field>

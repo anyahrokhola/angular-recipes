@@ -1,25 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { ModalMainComponent } from './modal-main.component';
 
 describe('ModalMainComponent', () => {
-  let component: ModalMainComponent;
-  let fixture: ComponentFixture<ModalMainComponent>;
+	let spectator: Spectator<ModalMainComponent>;
+	const createComponent = createComponentFactory({
+		component: ModalMainComponent,
+		declarations: [ModalMainComponent],
+	});
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ModalMainComponent ]
-    })
-    .compileComponents();
-  });
+	beforeEach(() => (spectator = createComponent()));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ModalMainComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(spectator.component).toBeTruthy();
+	});
 });
