@@ -1,6 +1,5 @@
 <img src="assets/borsh.jpg" alt="" />
-<span class="title">{{ title }}</span>
-<span class="description">
-    Sample text. Click to select the text box. Click again or double click to start editing the text.
-</span>
-<a href="" btnLink>More</a>
+
+<span class="title">{{ item.name }}</span>
+
+<a btnLink routerLink="/recipes/{{ item.id }}">More</a>

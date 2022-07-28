@@ -8,10 +8,15 @@ import { Recipe } from 'src/app/models';
 	styleUrls: ['./recipes.component.scss'],
 })
 export class RecipesComponent implements OnInit {
+	public data: Recipe[] = [];
+
 	constructor(private httpClient: HttpClient) {}
 
 	public ngOnInit(): void {
 		this.httpClient.get<{ data: Recipe[] }>('http://localhost:1337/api/recipes?populate=*').subscribe(resp => {
+			// @ts-ignore
+			this.data = resp.data.map(item => ({ id: item.id, ...item.attributes }));
+
 			// eslint-disable-next-line no-console
 			console.log('recipes', resp);
 		});
