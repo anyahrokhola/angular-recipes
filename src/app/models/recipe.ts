@@ -1,6 +1,6 @@
 export interface Recipe {
 	category: Category;
-	description: RecipeStep[];
+	// description: RecipeStep[];
 	difficulty: Difficulty;
 	id: number;
 	img: string;
@@ -13,12 +13,12 @@ export interface Recipe {
 export interface RecipeStep {
 	description: string;
 	id: number;
-	index: number;
 }
 
 export interface ProductInRecipe {
 	count: number;
 	id: number;
+	product: string;
 	unit: string;
 }
 
