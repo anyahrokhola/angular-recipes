@@ -1,4 +1,4 @@
-import { AssetsUrlPipe } from './assets-url.pipe';
+import { AssetsUrlPipe } from '../assets-url.pipe';
 
 describe('AssetsUrlPipe', () => {
   it('create an instance', () => {

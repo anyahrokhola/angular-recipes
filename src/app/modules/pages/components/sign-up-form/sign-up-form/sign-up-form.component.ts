@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -23,8 +24,9 @@ export class SignUpFormComponent {
 		lastName: new FormControl('', Validators.required),
 		email: new FormControl('', [Validators.required, Validators.email]),
 		password: new FormControl('', Validators.required),
-		confirmPassword: new FormControl('', Validators.required),
 	});
+
+	constructor(private httpClient: HttpClient) {}
 
 	public get nameControl(): FormControl {
 		return this.signUpForm.controls['name'] as FormControl;
@@ -38,33 +40,31 @@ export class SignUpFormComponent {
 	public get passwordControl(): FormControl {
 		return this.signUpForm.controls['password'] as FormControl;
 	}
-	public get confirmPasswordControl(): FormControl {
-		return this.signUpForm.controls['confirmPassword'] as FormControl;
+	// public get confirmPasswordControl(): FormControl {
+	// 	return this.signUpForm.controls['confirmPassword'] as FormControl;
+	// }
+
+	public async onSubmit() {
+		this.submitted = true;
+		try {
+			const data = this.filterEmptyFields(this.signUpForm.value);
+			await this.httpClient.post('http://localhost:1337/api/user-dates', { data: data }).toPromise();
+			this.signUpForm.reset();
+			this.signUpForm.markAsUntouched();
+			this.submitted = false;
+			alert('Повідомлення успішно відправлено!');
+		} catch (error) {
+			alert('Щось пішло не так =(');
+		}
 	}
 
-	public send() {
-		if (this.signUpForm.invalid) {
-			this.signUpForm.markAllAsTouched();
-			return;
+	private filterEmptyFields<T>(data: T): Partial<T> {
+		const fields: Partial<T> = {};
+
+		for (let key in data) {
+			!!data[key] ? (fields[key] = data[key]) : key;
 		}
 
-		this.signUpForm.reset();
-		alert('Форма отправлена');
+		return fields;
 	}
-
-	// public async onSubmit() {
-	// 	this.submitted = true;
-	// 	if (this.signUpForm.valid) {
-	// 		try {
-	// 			const data = this.signUpForm.value;
-	// 			await this.httpClient.post('http://localhost:1337/user-dates', data).toPromise();
-	// 			this.signUpForm.reset();
-	// 			this.signUpForm.markAsUntouched();
-	// 			this.submitted = false;
-	// 			alert('Повідомлення успішно відправлено!');
-	// 		} catch (error) {
-	// 			alert('Щось пішло не так =(');
-	// 		}
-	// 	}
-	// }
 }

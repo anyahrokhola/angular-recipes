@@ -13,6 +13,7 @@ import { FormModule } from '../form/form.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { CoreModule } from 'src/app/core/core.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 	declarations: [
@@ -33,6 +34,7 @@ import { CoreModule } from 'src/app/core/core.module';
 		ReactiveFormsModule,
 		AppRoutingModule,
 		CoreModule,
+		HttpClientModule,
 	],
 	exports: [
 		HeaderComponent,

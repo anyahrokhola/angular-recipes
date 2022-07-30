@@ -1,5 +1,5 @@
 <div>
-	<img src="{{ item.img.data?.url || 'ANYA' | assetsUrl }}" alt="{{ item.name }}" />
+	<img [src]="item.img.data?.url | assetsUrlOrEmpty" [alt]="item.name" />
 </div>
 
 <span class="title">{{ item.name }}</span>

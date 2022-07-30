@@ -1,11 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { AssetsService } from '../../services/assets/assets.service';
 
 @Pipe({
 	name: 'assetsUrl',
 })
 export class AssetsUrlPipe implements PipeTransform {
+	constructor(private assetsService: AssetsService) {}
+
 	public transform(url: string): string {
-		return `${environment.api}${url}`;
+		return this.assetsService.getFullUrl(url);
 	}
 }
