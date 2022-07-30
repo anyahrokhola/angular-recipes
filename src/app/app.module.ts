@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,7 +26,8 @@ import { PagesModule } from './modules/pages/pages.module';
 import { HomeModule } from './modules/home/home.module';
 import { RecipesModule } from './modules/recipes/recipes.module';
 import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
-import { HttpClientModule } from '@angular/common/http';
+
+import { ParseInterceptor } from './interceptors';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -55,7 +57,7 @@ import { HttpClientModule } from '@angular/common/http';
 		AddRecipeModule,
 		HttpClientModule,
 	],
-	providers: [],
+	providers: [{ provide: HTTP_INTERCEPTORS, useClass: ParseInterceptor, multi: true }],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

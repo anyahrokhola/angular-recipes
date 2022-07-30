@@ -6,20 +6,20 @@ export interface Recipe {
 	description: string;
 	difficulty: Difficulty;
 	id: number;
-	img?: Image;
+	img: Image | { data: null };
+	ingredients: RecipeIngredient[];
 	meal: Meal;
 	name: string;
-	products: ProductInRecipe;
 	time: number;
 }
 
 export interface RecipeStep {
-	description: string;
+	cooking: string;
 	id: number;
 	step: number;
 }
 
-export interface ProductInRecipe {
+export interface RecipeIngredient {
 	count: number;
 	id: number;
 	product: string;

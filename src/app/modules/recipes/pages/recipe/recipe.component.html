@@ -24,7 +24,11 @@
 		<div class="row">
 			<div class="col-6">
 				<div class="img-wrapper">
-					<img *ngIf="item.img.data.attributes.url" src="{{ item.img.data.attributes.url | assetsUrl }}" alt="{{ item.name }}" />
+					<img
+						*ngIf="item.img.data && item.img.data.url"
+						[src]="item.img.data.url | assetsUrl"
+						[alt]="item.name"
+					/>
 				</div>
 				<div class="cooking">
 					<h2>Cooking</h2>
@@ -40,13 +44,12 @@
 
 			<div class="col-6">
 				<h2>Ingredients</h2>
-				<ul class="ingredients" *ngFor="let product of item.ingredients">
+				<ul class="ingredients" *ngFor="let ingredient of item.ingredients">
 					<li class="ingredient">
-						<span class="ingredient-name">{{ product.product }}:</span>
-						<span class="ingredient-measure">{{ product.count }} {{ product.unit }}</span>
+						<span class="ingredient-name">{{ ingredient.product }}:</span>
+						<span class="ingredient-measure">{{ ingredient.count }} {{ ingredient.unit }}</span>
 					</li>
 				</ul>
-				<!-- <div class="ingredients-image"></div> -->
 			</div>
 		</div>
 	</div>
