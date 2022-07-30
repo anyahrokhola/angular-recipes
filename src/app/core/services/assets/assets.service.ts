@@ -6,6 +6,6 @@ import { environment } from '@env/environment';
 })
 export class AssetsService {
 	public getFullUrl(url: string): string {
-		return `${environment.api}${url}`;
+		return `${environment.host}${url}`;
 	}
 }

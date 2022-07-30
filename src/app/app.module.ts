@@ -27,7 +27,7 @@ import { HomeModule } from './modules/home/home.module';
 import { RecipesModule } from './modules/recipes/recipes.module';
 import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 
-import { AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
+import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -58,6 +58,7 @@ import { AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
 		HttpClientModule,
 	],
 	providers: [
+		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: AutoPopulateInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ParseInterceptor, multi: true },
 	],
