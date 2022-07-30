@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { pickBy } from 'lodash';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 	public isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -17,7 +18,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SignUpFormComponent {
 	public matcher = new MyErrorStateMatcher();
-	public submitted = false;
 
 	public signUpForm = new FormGroup({
 		name: new FormControl('', Validators.required),
@@ -45,26 +45,22 @@ export class SignUpFormComponent {
 	// }
 
 	public async onSubmit() {
-		this.submitted = true;
+		if (this.signUpForm.invalid) {
+			this.signUpForm.markAllAsTouched();
+			return;
+		}
 		try {
 			const data = this.filterEmptyFields(this.signUpForm.value);
 			await this.httpClient.post('http://localhost:1337/api/user-dates', { data: data }).toPromise();
 			this.signUpForm.reset();
 			this.signUpForm.markAsUntouched();
-			this.submitted = false;
 			alert('Повідомлення успішно відправлено!');
 		} catch (error) {
 			alert('Щось пішло не так =(');
 		}
 	}
 
-	private filterEmptyFields<T>(data: T): Partial<T> {
-		const fields: Partial<T> = {};
-
-		for (let key in data) {
-			!!data[key] ? (fields[key] = data[key]) : key;
-		}
-
-		return fields;
+	private filterEmptyFields<T extends object>(data: T): Partial<T> {
+		return pickBy(data, value => !!value);
 	}
 }
