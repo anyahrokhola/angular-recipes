@@ -51,7 +51,7 @@ export class SignUpFormComponent {
 		}
 		try {
 			const data = this.filterEmptyFields(this.signUpForm.value);
-			await this.httpClient.post('http://localhost:1337/api/user-dates', { data: data }).toPromise();
+			await this.httpClient.post('/user-dates', { data: data }).toPromise();
 			this.signUpForm.reset();
 			this.signUpForm.markAsUntouched();
 			alert('Повідомлення успішно відправлено!');

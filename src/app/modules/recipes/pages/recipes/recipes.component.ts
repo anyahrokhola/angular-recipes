@@ -14,7 +14,7 @@ export class RecipesComponent implements OnInit {
 	constructor(private httpClient: HttpClient) {}
 
 	public ngOnInit(): void {
-		this.httpClient.get<ApiResponse<Recipe[]>>('http://localhost:1337/api/recipes?populate=*').subscribe(resp => {
+		this.httpClient.get<ApiResponse<Recipe[]>>('/recipes').subscribe(resp => {
 			this.data = resp.data;
 		});
 	}

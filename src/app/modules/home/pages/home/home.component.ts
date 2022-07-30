@@ -13,8 +13,7 @@ export class HomeComponent implements OnInit {
 	constructor(private httpClient: HttpClient) {}
 
 	public ngOnInit(): void {
-		this.httpClient.get<{ data: Recipe[] }>('http://localhost:1337/api/recipes?populate=*').subscribe(resp => {
-			// @ts-ignore
+		this.httpClient.get<{ data: Recipe[] }>('/recipes').subscribe(resp => {
 			this.data = resp.data;
 		});
 	}
