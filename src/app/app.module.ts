@@ -25,7 +25,6 @@ import { PagesModule } from './modules/pages/pages.module';
 import { HomeModule } from './modules/home/home.module';
 import { RecipesModule } from './modules/recipes/recipes.module';
 import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
-import { ProductsModule } from './modules/products/products.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -54,7 +53,6 @@ import { HttpClientModule } from '@angular/common/http';
 		ButtonModule,
 		RecipesModule,
 		AddRecipeModule,
-		ProductsModule,
 		HttpClientModule,
 	],
 	providers: [],

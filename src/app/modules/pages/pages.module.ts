@@ -12,6 +12,7 @@ import { ModalModule } from '../modal/modal.module';
 import { FormModule } from '../form/form.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
 	declarations: [
@@ -31,6 +32,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 		FormsModule,
 		ReactiveFormsModule,
 		AppRoutingModule,
+		CoreModule,
 	],
 	exports: [
 		HeaderComponent,

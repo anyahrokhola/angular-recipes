@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 	styleUrls: ['./recipe.component.scss'],
 })
 export class RecipeComponent implements OnInit {
-	public item?: Recipe;
+	public item?: any;
 
 	constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
 
@@ -20,8 +20,6 @@ export class RecipeComponent implements OnInit {
 			// @ts-ignore
 			this.item = { id: resp.data.id, ...resp.data.attributes };
 
-			// eslint-disable-next-line no-console
-			console.log('recipes', resp);
 		});
 	}
 }

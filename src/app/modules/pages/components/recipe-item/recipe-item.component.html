@@ -1,5 +1,7 @@
-<img src="assets/borsh.jpg" alt="" />
+<div>
+	<img src="{{ item.img.data.attributes.url | assetsUrl }}" alt="{{ item.name }}" />
+</div>
 
 <span class="title">{{ item.name }}</span>
-
+<span class="description">{{item.description}}</span>
 <a btnLink routerLink="/recipes/{{ item.id }}">More</a>

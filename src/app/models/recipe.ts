@@ -1,9 +1,12 @@
+import { Image } from './image';
+
 export interface Recipe {
 	category: Category;
-	// description: RecipeStep[];
+	cooking: RecipeStep[];
+	description: string;
 	difficulty: Difficulty;
 	id: number;
-	img: string;
+	img?: Image;
 	meal: Meal;
 	name: string;
 	products: ProductInRecipe;
@@ -13,6 +16,7 @@ export interface Recipe {
 export interface RecipeStep {
 	description: string;
 	id: number;
+	step: number;
 }
 
 export interface ProductInRecipe {

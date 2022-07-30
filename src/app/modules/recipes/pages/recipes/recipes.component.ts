@@ -17,8 +17,7 @@ export class RecipesComponent implements OnInit {
 			// @ts-ignore
 			this.data = resp.data.map(item => ({ id: item.id, ...item.attributes }));
 
-			// eslint-disable-next-line no-console
-			console.log('recipes', resp);
+			console.log(this.data)
 		});
 	}
 }
