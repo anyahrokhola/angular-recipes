@@ -16,6 +16,7 @@ img {
 	height: 250px;
 	width: 300px;
 	border-radius: 40px;
+	object-fit: cover;
 }
 
 .title {
@@ -26,6 +27,7 @@ img {
 
 .description {
     max-width: 300px;
+	min-height: 70px;
 	margin-bottom: 20px;
 	text-align: center;
     font-style: italic;
