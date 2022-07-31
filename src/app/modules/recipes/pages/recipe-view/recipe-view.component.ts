@@ -5,11 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiResponse } from '../../../../models/api';
 
 @Component({
-	selector: 'recipe',
-	templateUrl: './recipe.component.html',
-	styleUrls: ['./recipe.component.scss'],
+	selector: 'recipe-view',
+	templateUrl: './recipe-view.component.html',
+	styleUrls: ['./recipe-view.component.scss'],
 })
-export class RecipeComponent implements OnInit {
+export class RecipeViewComponent implements OnInit {
 	public item?: Recipe;
 
 	constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}

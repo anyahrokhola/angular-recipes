@@ -1,2 +1,6 @@
 <intro></intro>
-<recipe-list [data]="data"></recipe-list>
+<h2>List of recipes</h2>
+
+<div class="recipes-wrapper">
+	<recipe-item *ngFor="let recipe of data" [item]="recipe"></recipe-item>
+</div>

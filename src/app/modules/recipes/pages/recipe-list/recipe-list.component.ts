@@ -4,11 +4,11 @@ import { Recipe } from 'src/app/models';
 import { ApiResponse } from '../../../../models/api';
 
 @Component({
-	selector: 'recipes',
-	templateUrl: './recipes.component.html',
-	styleUrls: ['./recipes.component.scss'],
+	selector: 'recipe-list',
+	templateUrl: './recipe-list.component.html',
+	styleUrls: ['./recipe-list.component.scss'],
 })
-export class RecipesComponent implements OnInit {
+export class RecipeListComponent implements OnInit {
 	public data: Recipe[] = [];
 
 	constructor(private httpClient: HttpClient) {}
