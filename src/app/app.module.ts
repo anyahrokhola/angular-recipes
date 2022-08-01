@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,6 +27,11 @@ import { HomeModule } from './modules/home/home.module';
 import { RecipesModule } from './modules/recipes/recipes.module';
 import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 
+import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
+import { NotifierModule } from 'angular-notifier';
+
+import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
+
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
@@ -52,8 +58,25 @@ import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 		ButtonModule,
 		RecipesModule,
 		AddRecipeModule,
+		HttpClientModule,
+		NotifierModule,
+		NgxValidationMessagesModule.forRoot({
+			messages: {
+				// Key is validator name, value is validator message
+				required: 'This is required filed!',
+				email: 'Error email format',
+				// If validator gets params, you can specify params placeholder in the validation message
+				// to get validator params values for constructing more detail message
+				maxlength: 'Max count symbols are #[requiredLength]',
+				minlength: 'Min count symbols are #[requiredLength]',
+			},
+		}),
 	],
-	providers: [],
+	providers: [
+		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: AutoPopulateInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: ParseInterceptor, multi: true },
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

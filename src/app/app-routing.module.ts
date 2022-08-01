@@ -2,20 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddRecipePageComponent } from './modules/add-recipe/pages/add-recipe-page/add-recipe-page.component';
 import { HomeComponent } from './modules/home/pages/home/home.component';
-import { RecipesComponent } from './modules/recipes/pages/recipes/recipes.component';
+import { RecipeListComponent } from './modules/recipes/pages/recipe-list/recipe-list.component';
+import { RecipeViewComponent } from './modules/recipes/pages/recipe-view/recipe-view.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
-	{ path: 'recipes', component: RecipesComponent },
-	{ path: 'add-recipe-page', component: AddRecipePageComponent },
+
+	{ path: 'recipes', component: RecipeListComponent, pathMatch: 'full' },
+	{ path: 'recipes/add', component: AddRecipePageComponent, pathMatch: 'full' },
+	{ path: 'recipes/:id', component: RecipeViewComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
-	imports: [
-		RouterModule.forRoot(routes, {
-			initialNavigation: 'enabled',
-		}),
-	],
+	imports: [RouterModule.forRoot(routes, { initialNavigation: 'enabled' })],
 	exports: [RouterModule],
 })
 export class AppRoutingModule {}
