@@ -14,6 +14,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from 'angular-notifier';
+import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
 	declarations: [HeaderComponent, FooterComponent, SocialMediaComponent, RecipeItemComponent, SignUpFormComponent],
@@ -29,6 +31,8 @@ import { NotifierModule } from 'angular-notifier';
 		CoreModule,
 		HttpClientModule,
 		NotifierModule,
+		NgxValidationMessagesModule,
+		MatInputModule,
 	],
 	exports: [HeaderComponent, FooterComponent, SocialMediaComponent, RecipeItemComponent, SignUpFormComponent],
 })

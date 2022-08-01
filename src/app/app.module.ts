@@ -30,6 +30,8 @@ import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
 import { NotifierModule } from 'angular-notifier';
 
+import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
+
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
@@ -58,6 +60,17 @@ import { NotifierModule } from 'angular-notifier';
 		AddRecipeModule,
 		HttpClientModule,
 		NotifierModule,
+		NgxValidationMessagesModule.forRoot({
+			messages: {
+				// Key is validator name, value is validator message
+				required: 'This is required filed!',
+				email: 'Error email format',
+				// If validator gets params, you can specify params placeholder in the validation message
+				// to get validator params values for constructing more detail message
+				maxlength: 'Max count symbols are #[requiredLength]',
+				minlength: 'Min count symbols are #[requiredLength]',
+			},
+		}),
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },

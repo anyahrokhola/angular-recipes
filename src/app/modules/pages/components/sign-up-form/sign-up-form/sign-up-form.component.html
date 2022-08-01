@@ -5,15 +5,19 @@
 			<div class="row">
 				<div class="col-6">
 					<input-text formControlName="name" label="Name" placeholder="Name"></input-text>
+					<mat-error ngxValidationMessages [for]="signUpForm.get('name')"></mat-error>
 				</div>
 				<div class="col-6">
 					<input-text formControlName="lastName" label="Last name" placeholder="Last name"></input-text>
+					<mat-error ngxValidationMessages [for]="signUpForm.get('lastName')"></mat-error>
 				</div>
 				<div class="col-12">
 					<input-text formControlName="email" label="Email" placeholder="Email"></input-text>
+					<mat-error ngxValidationMessages [for]="signUpForm.get('email')"></mat-error>
 				</div>
 				<div class="col-12">
 					<input-text formControlName="password" label="Password" placeholder="Last name"></input-text>
+					<mat-error ngxValidationMessages [for]="signUpForm.get('password')"></mat-error>
 				</div>
 				<div class="col-12">
 					<input-text
@@ -21,6 +25,7 @@
 						label="Confirm Password"
 						placeholder="Confirm Password"
 					></input-text>
+					<mat-error ngxValidationMessages [for]="signUpForm.get('confirmPassword')"></mat-error>
 				</div>
 			</div>
 		</form>

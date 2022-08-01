@@ -19,6 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SignUpFormComponent {
 	public matcher = new MyErrorStateMatcher();
+	public showError = false;
 
 	public signUpForm = new FormGroup({
 		name: new FormControl('', Validators.required),
@@ -52,6 +53,7 @@ export class SignUpFormComponent {
 
 	public async onSubmit() {
 		if (this.signUpForm.invalid) {
+			this.showError = true;
 			this.notifier.notify('error', 'Somethings wrong :(');
 			this.signUpForm.markAllAsTouched();
 			return;
