@@ -1,11 +1,5 @@
 <mat-form-field class="example-full-width" appearance="fill">
 	<mat-label>{{ label }}</mat-label>
-	<input
-		matInput
-		[value]="val"
-		[disabled]="disabled"
-		[placeholder]="placeholder"
-		(input)="handleInput($event)"
-		(focus)="onTouched()"
-	/>
+	<input matInput [formControl]="control" />
+	<mat-error ngxValidationMessages [for]="control"></mat-error>
 </mat-form-field>

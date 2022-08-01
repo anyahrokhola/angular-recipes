@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Injector, Input } from '@angular/core';
+import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
 	selector: 'input-text',
@@ -11,11 +11,20 @@ export class InputTextComponent implements ControlValueAccessor {
 	@Input() public label!: string;
 	@Input() public placeholder!: string;
 
+	public control!: FormControl;
+
 	public val?: Nullable<string>;
 	public disabled = false;
 
 	public onChange!: (value: string) => void;
 	public onTouch!: () => void;
+
+	constructor(private injector: Injector) {}
+
+	public ngAfterContentInit() {
+		const ngControl = this.injector.get(NgControl);
+		this.control = ngControl.control as FormControl;
+	}
 
 	public writeValue(value: string): void {
 		this.val = value;

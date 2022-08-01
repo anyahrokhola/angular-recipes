@@ -1,16 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { pickBy } from 'lodash';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-	public isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-		const isSubmitted = form && form.submitted;
-		return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-	}
-}
 
 @Component({
 	selector: 'sign-up-form',
@@ -18,9 +10,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 	styleUrls: ['./sign-up-form.component.scss'],
 })
 export class SignUpFormComponent {
-	public matcher = new MyErrorStateMatcher();
-	public showError = false;
-
 	public signUpForm = new FormGroup({
 		name: new FormControl('', Validators.required),
 		lastName: new FormControl('', Validators.required),
@@ -53,7 +42,6 @@ export class SignUpFormComponent {
 
 	public async onSubmit() {
 		if (this.signUpForm.invalid) {
-			this.showError = true;
 			this.notifier.notify('error', 'Somethings wrong :(');
 			this.signUpForm.markAllAsTouched();
 			return;

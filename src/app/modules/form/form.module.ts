@@ -7,12 +7,23 @@ import { MatSelectModule } from '@angular/material/select';
 import { InputTextComponent } from './components/input-text/input-text.component';
 import { InputSelectComponent } from './components/input-select/input-select.component';
 import { ModalModule } from '../modal/modal.module';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { FormControlValidationDirective } from './directives/form-control-validation.directive';
+import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-	imports: [BrowserModule, MatInputModule, MatSelectModule, ModalModule],
-	declarations: [InputTextComponent, InputSelectComponent],
+	imports: [
+		BrowserModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatSelectModule,
+		ModalModule,
+		NgxValidationMessagesModule,
+		ReactiveFormsModule,
+		FormsModule,
+	],
+	declarations: [InputTextComponent, InputSelectComponent, FormControlValidationDirective],
 	exports: [InputTextComponent, InputSelectComponent],
-	providers: [{ provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }],
 })
 export class FormModule {}

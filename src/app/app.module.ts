@@ -17,7 +17,7 @@ import { FormModule } from './modules/form/form.module';
 import { ButtonModule } from './modules/button/button.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from '@env/environment';
 import { ModalModule } from './modules/modal/modal.module';
@@ -31,6 +31,13 @@ import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './int
 import { NotifierModule } from 'angular-notifier';
 
 import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class CustomErrorStateMatcher implements ErrorStateMatcher {
+	public isErrorState(control: FormControl | null): boolean {
+		return !!(control?.invalid && (control.dirty || control.touched));
+	}
+}
 
 @NgModule({
 	declarations: [AppComponent],
@@ -76,6 +83,7 @@ import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: AutoPopulateInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ParseInterceptor, multi: true },
+		{ provide: ErrorStateMatcher, useClass: CustomErrorStateMatcher },
 	],
 	bootstrap: [AppComponent],
 })
