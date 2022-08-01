@@ -51,11 +51,14 @@ export class SignUpFormComponent {
 	}
 
 	public async onSubmit() {
-		// eslint-disable-next-line no-console
-		console.log(this.isConfirmPassword());
 		if (this.signUpForm.invalid) {
 			this.notifier.notify('error', 'Somethings wrong :(');
 			this.signUpForm.markAllAsTouched();
+			return;
+		}
+
+		if (!this.isConfirmPassword()) {
+			this.notifier.notify('error', 'Passwords are different');
 			return;
 		}
 		try {
