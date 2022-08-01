@@ -28,7 +28,6 @@ import { RecipesModule } from './modules/recipes/recipes.module';
 import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 
 import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
-import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -57,7 +56,6 @@ import { NotifierModule } from 'angular-notifier';
 		RecipesModule,
 		AddRecipeModule,
 		HttpClientModule,
-		NotifierModule,
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
