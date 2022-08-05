@@ -10,6 +10,7 @@ import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from 
 export class InputTextComponent implements ControlValueAccessor {
 	@Input() public label!: string;
 	@Input() public placeholder!: string;
+	@Input() public error?: string;
 
 	public control!: FormControl;
 

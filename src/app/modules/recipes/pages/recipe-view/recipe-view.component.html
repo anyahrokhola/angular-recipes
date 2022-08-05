@@ -27,7 +27,7 @@
 					<img [src]="item.img.data?.url | assetsUrlOrEmpty" [alt]="item.name" />
 				</div>
 				<div class="cooking">
-					<h2>Cooking</h2>
+					<h3>Cooking</h3>
 					<div *ngFor="let step of item.cooking">
 						<div class="steps">
 							<div class="step">Step {{ step.step }}</div>
@@ -39,7 +39,7 @@
 			</div>
 
 			<div class="col-6">
-				<h2>Ingredients</h2>
+				<h3>Ingredients</h3>
 				<ul class="ingredients" *ngFor="let ingredient of item.ingredients">
 					<li class="ingredient">
 						<span class="ingredient-name">{{ ingredient.product }}:</span>

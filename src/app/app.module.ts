@@ -72,6 +72,7 @@ export class CustomErrorStateMatcher implements ErrorStateMatcher {
 				// Key is validator name, value is validator message
 				required: 'This is required filed!',
 				email: 'Error email format',
+				differentPasswords: 'Your passwords are different',
 				// If validator gets params, you can specify params placeholder in the validation message
 				// to get validator params values for constructing more detail message
 				maxlength: 'Max count symbols are #[requiredLength]',

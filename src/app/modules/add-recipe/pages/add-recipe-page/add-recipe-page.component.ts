@@ -8,6 +8,7 @@ import { OptionService } from 'src/app/services';
 	styleUrls: ['./add-recipe-page.component.scss'],
 })
 export class AddRecipePageComponent {
+	public url = 'assets/no_icon.png';
 	public readonly mealOptions = this.optionService.getMealOptions();
 	public readonly categoryOptions = this.optionService.getCategoryOptions();
 	public readonly difficultyOptions = this.optionService.getDifficultyOptions();
@@ -16,7 +17,20 @@ export class AddRecipePageComponent {
 		meal: new FormControl(),
 		category: new FormControl(),
 		difficulty: new FormControl(),
+		name: new FormControl(),
+		description: new FormControl(),
+		time: new FormControl(),
 	});
 
 	constructor(private optionService: OptionService) {}
+
+	public onSelectFile(event: any) {
+		if (event.target.files) {
+			const reader = new FileReader();
+			reader.readAsDataURL(event.target.files[0]);
+			reader.onload = (event: any) => {
+				this.url = event.target.result;
+			};
+		}
+	}
 }

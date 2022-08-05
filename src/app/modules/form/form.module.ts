@@ -7,7 +7,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { InputTextComponent } from './components/input-text/input-text.component';
 import { InputSelectComponent } from './components/input-select/input-select.component';
 import { ModalModule } from '../modal/modal.module';
-import { FormControlValidationDirective } from './directives/form-control-validation.directive';
 import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		ReactiveFormsModule,
 		FormsModule,
 	],
-	declarations: [InputTextComponent, InputSelectComponent, FormControlValidationDirective],
+	declarations: [InputTextComponent, InputSelectComponent],
 	exports: [InputTextComponent, InputSelectComponent],
 })
 export class FormModule {}
