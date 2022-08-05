@@ -10,8 +10,13 @@
 					<input-text formControlName="lastName" label="Last name" placeholder="Last name"></input-text>
 				</div>
 				<div class="col-12">
-					<input-text formControlName="email" label="Email" placeholder="Email"></input-text>
+					<mat-form-field appearance="fill">
+						<mat-label>Email</mat-label>
+						<input matInput validationField formControlName="email" placeholder="Email" />
+						<mat-error validationError="email"></mat-error>
+					</mat-form-field>
 				</div>
+
 				<div class="col-12">
 					<input-text formControlName="password" label="Password" placeholder="Last name"></input-text>
 				</div>
