@@ -4,6 +4,8 @@ import { ButtonModule } from 'src/app/modules/button/button.module';
 
 import { RecipeItemComponent } from './recipe-item.component';
 
+import { RecipeMock } from '../../../recipes/mocks/recipe.mock';
+
 describe('RecipeItemComponent', () => {
 	let spectator: Spectator<RecipeItemComponent>;
 	const createComponent = createComponentFactory({
@@ -11,7 +13,7 @@ describe('RecipeItemComponent', () => {
 		component: RecipeItemComponent,
 	});
 
-	beforeEach(() => (spectator = createComponent()));
+	beforeEach(() => (spectator = createComponent({ props: { item: new RecipeMock() } })));
 
 	it('should create', () => {
 		expect(spectator.component).toBeTruthy();
