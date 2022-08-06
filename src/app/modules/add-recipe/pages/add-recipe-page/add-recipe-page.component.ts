@@ -16,7 +16,22 @@ export class AddRecipePageComponent {
 		meal: new FormControl(),
 		category: new FormControl(),
 		difficulty: new FormControl(),
+		name: new FormControl(),
+		description: new FormControl(),
+		time: new FormControl(),
 	});
 
 	constructor(private optionService: OptionService) {}
+
+	public get nameControl(): FormControl {
+		return this.form.controls['name'] as FormControl;
+	}
+
+	public get descriptionControl(): FormControl {
+		return this.form.controls['description'] as FormControl;
+	}
+
+	public get timeControl(): FormControl {
+		return this.form.controls['time'] as FormControl;
+	}
 }

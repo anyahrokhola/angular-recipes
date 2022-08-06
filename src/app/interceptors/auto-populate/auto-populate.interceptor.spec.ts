@@ -21,7 +21,9 @@ describe('AutoPopulateInterceptor', () => {
 	});
 
 	it('should add populate * to each GET request', () => {
-		httpClient.get('/test_url').subscribe();
+		httpClient.get('/test_url').subscribe(resp => {
+			expect(resp).toEqual({});
+		});
 
 		const testRequest = httpController.expectOne({ method: 'GET', url: '/test_url?populate=*' });
 
@@ -30,7 +32,9 @@ describe('AutoPopulateInterceptor', () => {
 	});
 
 	it('should not add populate * if request is not GET', () => {
-		httpClient.delete('/test_delete_url').subscribe();
+		httpClient.delete('/test_delete_url').subscribe(resp => {
+			expect(resp).toEqual({});
+		});
 
 		const testRequest = httpController.expectOne({ method: 'DELETE', url: '/test_delete_url' });
 

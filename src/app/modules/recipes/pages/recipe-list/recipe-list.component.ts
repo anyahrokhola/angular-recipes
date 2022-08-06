@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models';
-import { ApiResponse } from '../../../../models/api';
+import { RecipesRestService } from '../../services';
 
 @Component({
 	selector: 'recipe-list',
@@ -11,11 +10,11 @@ import { ApiResponse } from '../../../../models/api';
 export class RecipeListComponent implements OnInit {
 	public data: Recipe[] = [];
 
-	constructor(private httpClient: HttpClient) {}
+	constructor(private RecipesRestService: RecipesRestService) {}
 
 	public ngOnInit(): void {
-		this.httpClient.get<ApiResponse<Recipe[]>>('/recipes').subscribe(resp => {
-			this.data = resp.data;
+		this.RecipesRestService.getList().subscribe(data => {
+			this.data = data;
 		});
 	}
 }

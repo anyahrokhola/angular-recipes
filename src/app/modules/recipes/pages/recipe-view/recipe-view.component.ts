@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../../../../models';
 import { ActivatedRoute } from '@angular/router';
-import { ApiResponse } from '../../../../models/api';
+import { RecipesRestService } from '../../services';
 
 @Component({
 	selector: 'recipe-view',
@@ -12,13 +11,13 @@ import { ApiResponse } from '../../../../models/api';
 export class RecipeViewComponent implements OnInit {
 	public item?: Recipe;
 
-	constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
+	constructor(private route: ActivatedRoute, private recipesRestService: RecipesRestService) {}
 
 	public ngOnInit(): void {
-		const id = this.route.snapshot.paramMap.get('id');
+		const id = this.route.snapshot.paramMap.get('id') as string;
 
-		this.httpClient.get<ApiResponse<Recipe>>(`/recipes/${id}`).subscribe(resp => {
-			this.item = resp.data;
+		this.recipesRestService.getItem(id).subscribe(recipe => {
+			this.item = recipe;
 		});
 	}
 }

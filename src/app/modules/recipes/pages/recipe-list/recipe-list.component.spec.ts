@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { RecipeItemComponent } from 'src/app/modules/pages/components/recipe-item/recipe-item.component';
 
@@ -6,7 +7,7 @@ import { RecipeListComponent } from './recipe-list.component';
 describe('RecipeListComponent', () => {
 	let spectator: Spectator<RecipeListComponent>;
 	const createComponent = createComponentFactory({
-		imports: [],
+		imports: [HttpClientModule],
 		component: RecipeListComponent,
 		declarations: [RecipeListComponent, RecipeItemComponent],
 	});
