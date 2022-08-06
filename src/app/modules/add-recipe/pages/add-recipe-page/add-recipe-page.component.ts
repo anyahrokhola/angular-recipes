@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { SelectOption } from 'src/app/modules/form/models';
 import { OptionService } from 'src/app/services';
 
 @Component({
@@ -7,8 +8,9 @@ import { OptionService } from 'src/app/services';
 	templateUrl: './add-recipe-page.component.html',
 	styleUrls: ['./add-recipe-page.component.scss'],
 })
-export class AddRecipePageComponent {
-	public url = 'assets/no_icon.png';
+export class AddRecipePageComponent<Value extends string | number = string | number> {
+	public options!: Array<SelectOption<Value>>;
+	public url = 'assets/add-icon.png';
 	public readonly mealOptions = this.optionService.getMealOptions();
 	public readonly categoryOptions = this.optionService.getCategoryOptions();
 	public readonly difficultyOptions = this.optionService.getDifficultyOptions();
