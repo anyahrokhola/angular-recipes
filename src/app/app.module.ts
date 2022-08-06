@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,6 +28,7 @@ import { HomeModule } from './modules/home/home.module';
 import { RecipesModule } from './modules/recipes/recipes.module';
 import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 
+import { ValidationInterceptor } from './modules/validation';
 import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
 
 @NgModule({
@@ -61,6 +63,9 @@ import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './int
 		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: AutoPopulateInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ParseInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: ValidationInterceptor, multi: true },
+
+		{ provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
 	],
 	bootstrap: [AppComponent],
 })
