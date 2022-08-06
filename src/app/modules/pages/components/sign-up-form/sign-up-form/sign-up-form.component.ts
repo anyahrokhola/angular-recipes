@@ -18,6 +18,8 @@ export class PasswordErrorStateMatcher implements ErrorStateMatcher {
 	styleUrls: ['./sign-up-form.component.scss'],
 })
 export class SignUpFormComponent {
+	public visible = false;
+	public changeType = false;
 	public passwordErrorMatcher = new PasswordErrorStateMatcher();
 	public signUpForm = new FormGroup(
 		{
@@ -55,11 +57,6 @@ export class SignUpFormComponent {
 			this.signUpForm.markAllAsTouched();
 			return;
 		}
-
-		// if (!this.isConfirmPassword()) {
-		// 	this.notifierService.notify('error', 'Passwords are different');
-		// 	return;
-		// }
 		try {
 			const data = this.filterEmptyFields(this.signUpForm.value);
 			await this.httpClient.post('/user-dates', { data: data }).toPromise();
@@ -71,17 +68,12 @@ export class SignUpFormComponent {
 		}
 	}
 
+	public viewPass() {
+		this.visible = !this.visible;
+		this.changeType = !this.changeType;
+	}
+
 	private filterEmptyFields<T extends object>(data: T): Partial<T> {
 		return pickBy(data, value => !!value);
 	}
-
-	// private controlValueAreEqual(dataA: string, dataB: string): ValidatorFn {
-	// 	return (control: AbstractControl): ValidationErrors | null => {
-	// 		const FormGroup = control as FormGroup;
-	// 		const password = FormGroup.get(dataA)?.value;
-	// 		const confirmPassword = FormGroup.get(dataB)?.value;
-
-	// 		return password === confirmPassword ? null : { differentPasswords: true };
-	// 	};
-	// }
 }
