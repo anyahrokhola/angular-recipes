@@ -49,8 +49,7 @@ describe('RecipeViewComponent', () => {
 		expect(recipesRestService.getItem).toHaveBeenCalledOnceWith(recipeId);
 	});
 
-	// TODO: Anya fix issue with enums translations
-	xit('should set category', () => {
+	it('should set category', () => {
 		expect(spectator.query('[data-test="category"]')).toHaveText('Salad and Snack');
 	});
 });
