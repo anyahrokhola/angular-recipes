@@ -16,9 +16,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from 'angular-notifier';
 import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 import { MatInputModule } from '@angular/material/input';
+import { PasswordTogleDirective } from './directives/password-togle/password-togle.directive';
 
 @NgModule({
-	declarations: [HeaderComponent, FooterComponent, SocialMediaComponent, RecipeItemComponent, SignUpFormComponent],
+	declarations: [
+		HeaderComponent,
+		FooterComponent,
+		SocialMediaComponent,
+		RecipeItemComponent,
+		SignUpFormComponent,
+		PasswordTogleDirective,
+	],
 	imports: [
 		BrowserModule,
 		CommonModule,
