@@ -7,9 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { IngredientsComponent } from './components/ingredients/ingredients.component';
 
 @NgModule({
-	declarations: [AddRecipePageComponent],
+	declarations: [AddRecipePageComponent, IngredientsComponent],
 	imports: [
 		CommonModule,
 		FormModule,
