@@ -40,7 +40,7 @@ export interface Image extends File {
 			};
 		};
 		height: number;
-		previewUrl: string;
+		previewUrl: string | null;
 		width: number;
 	} & File['data'];
 }
