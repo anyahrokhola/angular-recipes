@@ -18,6 +18,7 @@ export class PasswordTogleDirective implements AfterViewInit {
 		this.iconElement.style.top = '0';
 		this.iconElement.style.right = '0';
 		this.elementRef.nativeElement.parentNode?.insertBefore(this.iconElement, this.elementRef.nativeElement);
+		this.elementRef.nativeElement.type = 'password';
 		this.iconElement.addEventListener('click', () => {
 			this.visible = !this.visible;
 			this.changeType = !this.changeType;

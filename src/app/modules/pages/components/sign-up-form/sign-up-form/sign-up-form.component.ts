@@ -32,9 +32,7 @@ export class SignUpFormComponent {
 		{ validators: PasswordValidators.controlValueAreEqual('password', 'confirmPassword') }
 	);
 
-	constructor(private httpClient: HttpClient, private notifierService: NotifierService) {
-		this.notifierService = notifierService;
-	}
+	constructor(private httpClient: HttpClient, private notifierService: NotifierService) {}
 
 	public get nameControl(): FormControl {
 		return this.signUpForm.controls['name'] as FormControl;
