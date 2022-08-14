@@ -102,9 +102,6 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 	}
 
 	public async onSubmit() {
-		// eslint-disable-next-line no-console
-		console.log(this.form.value);
-
 		try {
 			const data = this.form.value;
 			await this.httpClient.post('/recipes', { data: data }).toPromise();
