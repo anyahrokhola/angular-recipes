@@ -74,6 +74,11 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 		}
 	}
 
+	public removeImage() {
+		this.form.get('img')?.reset();
+		this.url = '';
+	}
+
 	public addIngredients() {
 		this.ingredients.push(
 			new FormGroup({
@@ -109,7 +114,7 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 			this.form.markAsUntouched();
 			this.notifierService.notify('success', 'Recipe successfully created');
 		} catch (error) {
-			this.notifierService.notify('wrong', 'Somethings wrong :(');
+			this.notifierService.notify('error', 'Somethings wrong :(');
 		}
 	}
 }
