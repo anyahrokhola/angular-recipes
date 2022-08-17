@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SelectOption } from '../../modules/form/models';
+import { SelectOption } from '../../models';
 import { Category, Difficulty, Meal } from '../../models';
 
 @Injectable({
