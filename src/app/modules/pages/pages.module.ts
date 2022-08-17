@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from 'angular-notifier';
 import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 import { MatInputModule } from '@angular/material/input';
+import { ValidationModule } from '../validation/validation.module';
 
 @NgModule({
 	declarations: [HeaderComponent, FooterComponent, SocialMediaComponent, RecipeItemComponent, SignUpFormComponent],
@@ -23,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 		BrowserModule,
 		CommonModule,
 		ButtonModule,
+		MatInputModule,
 		ModalModule,
 		FormModule,
 		FormsModule,
@@ -33,6 +35,7 @@ import { MatInputModule } from '@angular/material/input';
 		NotifierModule,
 		NgxValidationMessagesModule,
 		MatInputModule,
+		ValidationModule,
 	],
 	exports: [HeaderComponent, FooterComponent, SocialMediaComponent, RecipeItemComponent, SignUpFormComponent],
 })

@@ -1,5 +1,5 @@
-import { Category, Difficulty, Meal } from '../models';
-import { imageMock1, parsedImageMock } from './image.mock';
+import { Category, Difficulty, Meal } from '../../../models';
+import { imageMock1, parsedImageMock1 } from '../../../mocks/image.mock';
 
 export const recipeMock1 = {
 	id: 8,
@@ -21,7 +21,7 @@ export const recipeMock1 = {
 		updatedAt: '2022-07-30T08:39:26.124Z',
 	},
 };
-export const parsedRecipeMock1 = { id: 8, ...recipeMock1.attributes, img: parsedImageMock };
+export const parsedRecipeMock1 = { id: 8, ...recipeMock1.attributes, img: parsedImageMock1 };
 
 export const recipeMock2 = {
 	id: 10,
