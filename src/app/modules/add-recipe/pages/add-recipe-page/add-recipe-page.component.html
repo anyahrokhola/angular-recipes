@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-6">
 				<div class="img-wrapper">
-					<img [src]="url ? url : ' '" />
+					<img *ngIf="url" [src]="url" alt="uploaded photo"/>
 					<div class="upload-wrapper" *ngIf="!url">
 						<span class="upload-text">Add your image</span>
 						<i class="fa-solid fa-cloud-arrow-up"></i>
