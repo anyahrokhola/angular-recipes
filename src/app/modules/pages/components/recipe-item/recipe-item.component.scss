@@ -1,3 +1,5 @@
+@import 'variables/colors';
+
 :host {
 	display: flex;
 	flex-direction: column;
@@ -18,7 +20,6 @@ img {
 .title {
 	margin: 25px 0;
 	font-size: 24px;
-	text-transform: uppercase;
 }
 
 .description {
@@ -27,12 +28,11 @@ img {
 	margin-bottom: 20px;
 	text-align: center;
     font-style: italic;
-	color: #808080;
+	color: $color-text;
 }
 
 a {
     font-size: 18px;
-	color: #808080;
+	color: $color-text;
     letter-spacing: 2px;
-	text-transform: uppercase;
 }

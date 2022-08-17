@@ -14,8 +14,9 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from 'angular-notifier';
-import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 import { MatInputModule } from '@angular/material/input';
+import { ValidationModule } from '../validation/validation.module';
+import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 
 @NgModule({
 	declarations: [HeaderComponent, FooterComponent, SocialMediaComponent, RecipeItemComponent, SignUpFormComponent],
@@ -23,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 		BrowserModule,
 		CommonModule,
 		ButtonModule,
+		MatInputModule,
 		ModalModule,
 		FormModule,
 		FormsModule,
@@ -31,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
 		CoreModule,
 		HttpClientModule,
 		NotifierModule,
+		ValidationModule,
 		NgxValidationMessagesModule,
 		MatInputModule,
 	],
