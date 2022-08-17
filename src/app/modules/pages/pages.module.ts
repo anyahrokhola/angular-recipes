@@ -8,7 +8,6 @@ import { RecipeItemComponent } from './components/recipe-item/recipe-item.compon
 import { ButtonModule } from '../button/button.module';
 import { SignUpFormComponent } from './components/sign-up-form/sign-up-form/sign-up-form.component';
 import { ModalModule } from '../modal/modal.module';
-import { FormModule } from '../form/form.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { CoreModule } from 'src/app/core/core.module';
@@ -26,7 +25,6 @@ import { ValidationModule } from '../validation/validation.module';
 		ButtonModule,
 		MatInputModule,
 		ModalModule,
-		FormModule,
 		FormsModule,
 		ReactiveFormsModule,
 		AppRoutingModule,

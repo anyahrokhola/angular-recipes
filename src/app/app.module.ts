@@ -16,7 +16,6 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 import { AppComponent } from './app.component';
 
-import { FormModule } from './modules/form/form.module';
 import { ButtonModule } from './modules/button/button.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,7 +48,6 @@ import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './int
 		NgxsStoragePluginModule.forRoot({ key: ['forms'] }),
 		FormsModule,
 		ReactiveFormsModule,
-		FormModule,
 		BrowserAnimationsModule,
 		MatSliderModule,
 		ModalModule,
