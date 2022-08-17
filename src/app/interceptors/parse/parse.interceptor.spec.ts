@@ -4,7 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { ParseInterceptor } from './parse.interceptor';
 
-import { parsedRecipeMock1, parsedRecipeMock2, recipeMock1, recipeMock2 } from '../../mocks/recipe.mock';
+import { parsedRecipeMock1, parsedRecipeMock2, recipeMock1, recipeMock2 } from './data/recipe.mock';
 
 describe('ParseInterceptor', () => {
 	let httpClient: HttpClient;

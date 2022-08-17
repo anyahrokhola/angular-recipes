@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models';
+import { RecipesRestService } from '../../../recipes/services';
 
 @Component({
 	selector: 'home',
@@ -10,11 +10,11 @@ import { Recipe } from 'src/app/models';
 export class HomeComponent implements OnInit {
 	public data: Recipe[] = [];
 
-	constructor(private httpClient: HttpClient) {}
+	constructor(private RecipesRestService: RecipesRestService) {}
 
 	public ngOnInit(): void {
-		this.httpClient.get<{ data: Recipe[] }>('/recipes').subscribe(resp => {
-			this.data = resp.data;
+		this.RecipesRestService.getList().subscribe(data => {
+			this.data = data;
 		});
 	}
 }

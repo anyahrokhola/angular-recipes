@@ -1,36 +1,157 @@
 <h2>Add your recipe</h2>
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
 	<div class="container">
-		<div class="row align-items-center">
+		<div class="row">
 			<div class="col-6">
 				<div class="img-wrapper">
-					<img [src]="url" />
-					<br />
+					<img [src]="url ? url : ' '" />
+					<div class="upload-wrapper" *ngIf="!url">
+						<span class="upload-text">Add your image</span>
+						<i class="fa-solid fa-cloud-arrow-up"></i>
+					</div>
+					<button *ngIf="url" type="button" class="remove-icon" (click)="removeImage()">X</button>
+					<input formControlName="img" class="file" type="file" (change)="onSelectFile($event)" />
 				</div>
-				<input type="file" (change)="onSelectFile($event)" />
-			</div>
-			<div class="col-12">
-				<input-text label="Name" formControlName="name" placeholder="Name"></input-text>
-			</div>
-			<div class="col-12">
-				<input-text label="Description" formControlName="description" placeholder="Description"></input-text>
-			</div>
-			<div class="col-12">
-				<input-select label="Category" formControlName="category" [options]="categoryOptions"></input-select>
 			</div>
 			<div class="col-6">
-				<input-select label="Meal" formControlName="meal" [options]="mealOptions"></input-select>
+				<div class="wrapper">
+					<div class="input-wrapper">
+						<mat-form-field appearance="fill">
+							<mat-label>Name</mat-label>
+							<input placeholder="Name" matInput formControlName="name" />
+							<mat-error ngxValidationMessages [for]="form.get('name')"></mat-error>
+						</mat-form-field>
+					</div>
+					<div class="input-wrapper">
+						<mat-form-field appearance="fill">
+							<mat-label>Category</mat-label>
+							<mat-select formControlName="category">
+								<mat-option
+									*ngFor="let option of categoryOptions; let i = index"
+									[value]="option.value"
+								>
+									<span>{{ option.value }}</span>
+								</mat-option>
+							</mat-select>
+							<mat-error ngxValidationMessages [for]="form.get('category')"></mat-error>
+						</mat-form-field>
+					</div>
+					<div class="input-wrapper">
+						<mat-form-field appearance="fill">
+							<mat-label>Difficulty</mat-label>
+							<mat-select formControlName="difficulty">
+								<mat-option
+									*ngFor="let option of difficultyOptions; let i = index"
+									[value]="option.value"
+								>
+									<span>{{ option.value }}</span>
+								</mat-option>
+							</mat-select>
+							<mat-error ngxValidationMessages [for]="form.get('difficulty')"></mat-error>
+						</mat-form-field>
+					</div>
+
+					<div class="property-wrapper">
+						<div class="input-wrapper">
+							<mat-form-field appearance="fill">
+								<mat-label>Time</mat-label>
+								<input placeholder="Enter time of cooking" matInput formControlName="time" />
+								<mat-error ngxValidationMessages [for]="form.get('category')"></mat-error>
+							</mat-form-field>
+						</div>
+						<div class="input-wrapper">
+							<mat-form-field appearance="fill">
+								<mat-label>Meal</mat-label>
+								<mat-select formControlName="meal">
+									<mat-option
+										*ngFor="let option of mealOptions; let i = index"
+										[value]="option.value"
+									>
+										<span>{{ option.value }}</span>
+									</mat-option>
+								</mat-select>
+								<mat-error ngxValidationMessages [for]="form.get('meal')"></mat-error>
+							</mat-form-field>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-6">
-				<input-select
-					label="Difficulty"
-					formControlName="difficulty"
-					[options]="difficultyOptions"
-				></input-select>
+			<div class="col-12">
+				<div class="input-wrapper">
+					<mat-form-field appearance="fill">
+						<mat-label>Description</mat-label>
+						<input placeholder="Enter the description of food" matInput formControlName="description" />
+						<mat-error ngxValidationMessages [for]="form.get('description')"></mat-error>
+					</mat-form-field>
+				</div>
 			</div>
-			<div class="col-6">
-				<input-text label="Time" formControlName="time" placeholder="Time"></input-text>
-			</div>
+			<span class="title">List of ingredients</span>
+
+			<ul class="ingredients" formArrayName="ingredients">
+				<div class="wrapper-button-add">
+					<button
+						*ngIf="!ingredients.length"
+						type="button"
+						class="button-action add"
+						(click)="addIngredients()"
+					>
+						+
+					</button>
+				</div>
+				<li *ngFor="let ingredientForm of ingredients.controls; let i = index">
+					<div class="ingredients-wrapper" [formGroup]="getIngredientForm(i)">
+						<div class="input-wrapper">
+							<mat-form-field appearance="fill">
+								<mat-label>Name</mat-label>
+								<input formControlName="product" matInput />
+							</mat-form-field>
+						</div>
+						<div class="input-wrapper">
+							<mat-form-field appearance="fill">
+								<mat-label>Count</mat-label>
+								<input formControlName="count" matInput />
+							</mat-form-field>
+						</div>
+						<div class="input-wrapper">
+							<mat-form-field appearance="fill">
+								<mat-label>Unit</mat-label>
+								<input formControlName="unit" matInput />
+							</mat-form-field>
+						</div>
+						<button class="button-action remove" (click)="removeIngredient(i)">X</button>
+					</div>
+				</li>
+			</ul>
+			<button *ngIf="ingredients.length" type="button" class="button-action add" (click)="addIngredients()">
+				+
+			</button>
+
+			<span class="title">Cooking</span>
+			<ul class="cooking" formArrayName="cooking">
+				<div class="wrapper-button-add">
+					<button *ngIf="!cooking.length" type="button" class="button-action add" (click)="addCooking()">
+						+
+					</button>
+				</div>
+				<li *ngFor="let cookingForm of cooking.controls; let i = index">
+					<div class="cooking-wrapper" [formGroup]="getCookingForm(i)">
+						<div class="input-wrapper">
+							<mat-form-field appearance="fill">
+								<mat-label>Step</mat-label>
+								<input formControlName="step" matInput />
+							</mat-form-field>
+						</div>
+						<div class="input-wrapper">
+							<mat-form-field appearance="fill">
+								<mat-label>Description</mat-label>
+								<input formControlName="cooking" matInput />
+							</mat-form-field>
+						</div>
+						<button type="button" class="button-action remove" (click)="removeCooking(i)">X</button>
+					</div>
+				</li>
+			</ul>
+			<button *ngIf="cooking.length" type="button" class="button-action add" (click)="addCooking()">+</button>
 		</div>
 		<div class="button-wrapper">
 			<button btnOutline color="accent" size="lg" type="submit">Create</button>

@@ -14,9 +14,10 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from 'angular-notifier';
-import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 import { MatInputModule } from '@angular/material/input';
 import { PasswordTogleDirective } from './directives/password-togle/password-togle.directive';
+import { ValidationModule } from '../validation/validation.module';
+import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 
 @NgModule({
 	declarations: [
@@ -31,6 +32,7 @@ import { PasswordTogleDirective } from './directives/password-togle/password-tog
 		BrowserModule,
 		CommonModule,
 		ButtonModule,
+		MatInputModule,
 		ModalModule,
 		FormModule,
 		FormsModule,
@@ -39,6 +41,7 @@ import { PasswordTogleDirective } from './directives/password-togle/password-tog
 		CoreModule,
 		HttpClientModule,
 		NotifierModule,
+		ValidationModule,
 		NgxValidationMessagesModule,
 		MatInputModule,
 	],
