@@ -8,12 +8,12 @@ import { RecipeItemComponent } from './components/recipe-item/recipe-item.compon
 import { ButtonModule } from '../button/button.module';
 import { SignUpFormComponent } from './components/sign-up-form/sign-up-form/sign-up-form.component';
 import { ModalModule } from '../modal/modal.module';
-import { FormModule } from '../form/form.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from 'angular-notifier';
+import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 import { MatInputModule } from '@angular/material/input';
 import { ValidationModule } from '../validation/validation.module';
 
@@ -25,13 +25,14 @@ import { ValidationModule } from '../validation/validation.module';
 		ButtonModule,
 		MatInputModule,
 		ModalModule,
-		FormModule,
 		FormsModule,
 		ReactiveFormsModule,
 		AppRoutingModule,
 		CoreModule,
 		HttpClientModule,
 		NotifierModule,
+		NgxValidationMessagesModule,
+		MatInputModule,
 		ValidationModule,
 	],
 	exports: [HeaderComponent, FooterComponent, SocialMediaComponent, RecipeItemComponent, SignUpFormComponent],

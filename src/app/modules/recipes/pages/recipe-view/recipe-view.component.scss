@@ -1,16 +1,9 @@
-@import 'typography';
 @import 'variables/index';
 
 $seperator-color: #F4F4F5;
 
-h2,.name{
+h3,.name{
     color: $color-primary;
-}
-
-h2 {
-	font-size: 36px;
-	margin: 20px 0 40px;
-    
 }
 
 .recipe-wrapper {

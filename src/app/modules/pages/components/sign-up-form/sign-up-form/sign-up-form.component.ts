@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { NotifierService } from 'angular-notifier';
 import { pickBy } from 'lodash';
+import { PasswordValidators } from 'src/app/modules/validation/validators/passwords-validators';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-	public isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-		const isSubmitted = form && form.submitted;
-		return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+export class PasswordErrorStateMatcher implements ErrorStateMatcher {
+	public isErrorState(control: FormControl | null, form: FormGroupDirective): boolean {
+		return !!((control?.invalid || form.errors?.['differentPasswords']) && (control?.dirty || control?.touched));
 	}
 }
 
@@ -18,20 +18,20 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 	styleUrls: ['./sign-up-form.component.scss'],
 })
 export class SignUpFormComponent {
-	public matcher = new MyErrorStateMatcher();
+	public passwordErrorMatcher = new PasswordErrorStateMatcher();
+	public signUpForm = new FormGroup(
+		{
+			name: new FormControl('', Validators.required),
+			lastName: new FormControl('', Validators.required),
+			email: new FormControl('', [Validators.required, Validators.email]),
+			password: new FormControl('', Validators.required),
+			confirmPassword: new FormControl('', Validators.required),
+		},
+		{ validators: PasswordValidators.controlValueAreEqual('password', 'confirmPassword') }
+	);
 
-	public signUpForm = new FormGroup({
-		name: new FormControl('', Validators.required),
-		lastName: new FormControl('', Validators.required),
-		email: new FormControl('', [Validators.required, Validators.email]),
-		password: new FormControl('', Validators.required),
-		confirmPassword: new FormControl('', Validators.required),
-	});
-
-	private readonly notifier: NotifierService;
-
-	constructor(private httpClient: HttpClient, notifierService: NotifierService) {
-		this.notifier = notifierService;
+	constructor(private httpClient: HttpClient, private notifierService: NotifierService) {
+		this.notifierService = notifierService;
 	}
 
 	public get nameControl(): FormControl {
@@ -52,23 +52,22 @@ export class SignUpFormComponent {
 
 	public async onSubmit() {
 		if (this.signUpForm.invalid) {
-			this.notifier.notify('error', 'Somethings wrong :(');
 			this.signUpForm.markAllAsTouched();
 			return;
 		}
 
-		if (!this.isConfirmPassword()) {
-			this.notifier.notify('error', 'Passwords are different');
-			return;
-		}
+		// if (!this.isConfirmPassword()) {
+		// 	this.notifierService.notify('error', 'Passwords are different');
+		// 	return;
+		// }
 		try {
 			const data = this.filterEmptyFields(this.signUpForm.value);
 			await this.httpClient.post('/user-dates', { data: data }).toPromise();
 			this.signUpForm.reset();
 			this.signUpForm.markAsUntouched();
-			this.notifier.notify('success', 'Account successfully created');
+			this.notifierService.notify('success', 'Account successfully created');
 		} catch (error) {
-			this.notifier.notify('wrong', 'Somethings wrong :(');
+			this.notifierService.notify('wrong', 'Somethings wrong :(');
 		}
 	}
 
@@ -76,7 +75,13 @@ export class SignUpFormComponent {
 		return pickBy(data, value => !!value);
 	}
 
-	private isConfirmPassword() {
-		return this.passwordControl.value === this.confirmPasswordControl.value;
-	}
+	// private controlValueAreEqual(dataA: string, dataB: string): ValidatorFn {
+	// 	return (control: AbstractControl): ValidationErrors | null => {
+	// 		const FormGroup = control as FormGroup;
+	// 		const password = FormGroup.get(dataA)?.value;
+	// 		const confirmPassword = FormGroup.get(dataB)?.value;
+
+	// 		return password === confirmPassword ? null : { differentPasswords: true };
+	// 	};
+	// }
 }

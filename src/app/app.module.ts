@@ -8,13 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { NgxsModule } from '@ngxs/store';
 import { TooltipModule } from './modules/tooltip/tooltip.module';
+import { NotifierModule } from 'angular-notifier';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 import { AppComponent } from './app.component';
 
-import { FormModule } from './modules/form/form.module';
 import { ButtonModule } from './modules/button/button.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,7 +48,6 @@ import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './int
 		NgxsStoragePluginModule.forRoot({ key: ['forms'] }),
 		FormsModule,
 		ReactiveFormsModule,
-		FormModule,
 		BrowserAnimationsModule,
 		MatSliderModule,
 		ModalModule,
@@ -58,6 +58,19 @@ import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './int
 		RecipesModule,
 		AddRecipeModule,
 		HttpClientModule,
+		NotifierModule,
+		NgxValidationMessagesModule.forRoot({
+			messages: {
+				// Key is validator name, value is validator message
+				required: 'This is required filed!',
+				email: 'Error email format',
+				differentPasswords: 'Your passwords are different',
+				// If validator gets params, you can specify params placeholder in the validation message
+				// to get validator params values for constructing more detail message
+				maxlength: 'Max count symbols are #[requiredLength]',
+				minlength: 'Min count symbols are #[requiredLength]',
+			},
+		}),
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },

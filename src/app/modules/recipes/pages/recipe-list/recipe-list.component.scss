@@ -1,2 +1,5 @@
-@import 'typography.scss';
-@import 'recipes.scss';
+.recipes-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
