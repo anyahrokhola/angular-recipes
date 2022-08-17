@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ContentChild, TemplateRef } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { SelectOption } from 'src/app/modules/form/models';
 import { OptionService } from 'src/app/services';
+import { SelectOption } from '../../../../models';
 
 @Component({
 	selector: 'add-recipe-page',
