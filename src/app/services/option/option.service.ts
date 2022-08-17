@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SelectOption } from '../../models';
-import { Category, Difficulty, Meal } from '../../models';
+import { Category, Difficulty, Meal, SelectOption } from '../../models';
 
 @Injectable({
 	providedIn: 'root',

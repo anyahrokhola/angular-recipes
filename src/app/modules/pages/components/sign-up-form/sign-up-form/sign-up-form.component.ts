@@ -30,9 +30,7 @@ export class SignUpFormComponent {
 		{ validators: PasswordValidators.controlValueAreEqual('password', 'confirmPassword') }
 	);
 
-	constructor(private httpClient: HttpClient, private notifierService: NotifierService) {
-		this.notifierService = notifierService;
-	}
+	constructor(private httpClient: HttpClient, private notifierService: NotifierService) {}
 
 	public get nameControl(): FormControl {
 		return this.signUpForm.controls['name'] as FormControl;
@@ -55,11 +53,6 @@ export class SignUpFormComponent {
 			this.signUpForm.markAllAsTouched();
 			return;
 		}
-
-		// if (!this.isConfirmPassword()) {
-		// 	this.notifierService.notify('error', 'Passwords are different');
-		// 	return;
-		// }
 		try {
 			const data = this.filterEmptyFields(this.signUpForm.value);
 			await this.httpClient.post('/user-dates', { data: data }).toPromise();
@@ -74,14 +67,4 @@ export class SignUpFormComponent {
 	private filterEmptyFields<T extends object>(data: T): Partial<T> {
 		return pickBy(data, value => !!value);
 	}
-
-	// private controlValueAreEqual(dataA: string, dataB: string): ValidatorFn {
-	// 	return (control: AbstractControl): ValidationErrors | null => {
-	// 		const FormGroup = control as FormGroup;
-	// 		const password = FormGroup.get(dataA)?.value;
-	// 		const confirmPassword = FormGroup.get(dataB)?.value;
-
-	// 		return password === confirmPassword ? null : { differentPasswords: true };
-	// 	};
-	// }
 }

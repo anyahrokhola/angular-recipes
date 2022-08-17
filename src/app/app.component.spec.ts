@@ -1,6 +1,5 @@
 import { Spectator, createComponentFactory } from '@ngneat/spectator';
 
-import { FormModule } from './modules/form/form.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -25,7 +24,6 @@ describe('AppComponent', () => {
 			MatInputModule,
 			MatSelectModule,
 			MatButtonModule,
-			FormModule,
 			FormsModule,
 			ReactiveFormsModule,
 			ModalModule,

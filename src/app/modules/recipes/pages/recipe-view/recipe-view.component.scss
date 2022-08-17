@@ -2,11 +2,12 @@
 
 $seperator-color: #F4F4F5;
 
-h3,.name{
-    color: $color-primary;
+.name{
+    color: $color-accent;
 }
 
 .recipe-wrapper {
+    
 	display: flex;
 	flex-direction: column;
 }
@@ -55,7 +56,7 @@ h3,.name{
 	margin-bottom: 15px;
 }
 
-.cooking h2{
+.cooking h3{
     margin-top: 50px;
 }
 

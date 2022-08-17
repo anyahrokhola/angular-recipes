@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,14 +22,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from '@env/environment';
 import { ModalModule } from './modules/modal/modal.module';
-import { MatDialogModule } from '@angular/material/dialog';
 import { PagesModule } from './modules/pages/pages.module';
 import { HomeModule } from './modules/home/home.module';
 import { RecipesModule } from './modules/recipes/recipes.module';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
-
-import { ValidationInterceptor } from './modules/validation';
 import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
+import { ValidationInterceptor } from './modules/validation';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 @NgModule({
 	declarations: [AppComponent],

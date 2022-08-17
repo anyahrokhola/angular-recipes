@@ -1,3 +1,11 @@
+@import 'variables/colors.scss';
+
 .mat-form-field {
 	width: 100%;
+}
+
+.password-toggle-icon{
+	position: absolute;
+	top: 0;
+	right: 0;
 }

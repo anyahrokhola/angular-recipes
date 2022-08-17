@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Component, ContentChild, TemplateRef } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { NotifierService } from 'angular-notifier';
+import { SelectOption } from 'src/app/models';
 import { OptionService } from 'src/app/services';
 
 @Component({
@@ -7,22 +10,59 @@ import { OptionService } from 'src/app/services';
 	templateUrl: './add-recipe-page.component.html',
 	styleUrls: ['./add-recipe-page.component.scss'],
 })
-export class AddRecipePageComponent {
-	public url = 'assets/no_icon.png';
+export class AddRecipePageComponent<Value extends string | number = string | number> {
+	@ContentChild('customItem') public customItemRef?: TemplateRef<{ $implicit: SelectOption<Value>; index: number }>;
+
+	public url = '';
 	public readonly mealOptions = this.optionService.getMealOptions();
 	public readonly categoryOptions = this.optionService.getCategoryOptions();
 	public readonly difficultyOptions = this.optionService.getDifficultyOptions();
 
 	public readonly form = new FormGroup({
+		img: new FormControl(),
 		meal: new FormControl(),
 		category: new FormControl(),
 		difficulty: new FormControl(),
 		name: new FormControl(),
 		description: new FormControl(),
 		time: new FormControl(),
+		ingredients: new FormArray([
+			new FormGroup({
+				product: new FormControl(),
+				count: new FormControl(),
+				unit: new FormControl(),
+			}),
+		]),
+		cooking: new FormArray([
+			new FormGroup({
+				step: new FormControl(),
+				cooking: new FormControl(),
+			}),
+		]),
 	});
+	constructor(
+		private httpClient: HttpClient,
+		private notifierService: NotifierService,
+		private optionService: OptionService
+	) {
+		this.notifierService = notifierService;
+	}
 
-	constructor(private optionService: OptionService) {}
+	public get ingredients(): FormArray {
+		return this.form.get('ingredients') as FormArray;
+	}
+
+	public get cooking(): FormArray {
+		return this.form.get('cooking') as FormArray;
+	}
+
+	public getIngredientForm(index: number): FormGroup {
+		return this.ingredients.get(index.toString()) as FormGroup;
+	}
+
+	public getCookingForm(index: number): FormGroup {
+		return this.cooking.get(index.toString()) as FormGroup;
+	}
 
 	public onSelectFile(event: any) {
 		if (event.target.files) {
@@ -31,6 +71,50 @@ export class AddRecipePageComponent {
 			reader.onload = (event: any) => {
 				this.url = event.target.result;
 			};
+		}
+	}
+
+	public removeImage() {
+		this.form.get('img')?.reset();
+		this.url = '';
+	}
+
+	public addIngredients() {
+		this.ingredients.push(
+			new FormGroup({
+				product: new FormControl(),
+				count: new FormControl(),
+				unit: new FormControl(),
+			})
+		);
+	}
+
+	public addCooking() {
+		this.cooking.push(
+			new FormGroup({
+				step: new FormControl(),
+				cooking: new FormControl(),
+			})
+		);
+	}
+
+	public removeIngredient(index: number) {
+		this.ingredients.removeAt(index);
+	}
+
+	public removeCooking(index: number) {
+		this.cooking.removeAt(index);
+	}
+
+	public async onSubmit() {
+		try {
+			const data = this.form.value;
+			await this.httpClient.post('/recipes', { data: data }).toPromise();
+			this.form.reset();
+			this.form.markAsUntouched();
+			this.notifierService.notify('success', 'Recipe successfully created');
+		} catch (error) {
+			this.notifierService.notify('error', 'Somethings wrong :(');
 		}
 	}
 }
