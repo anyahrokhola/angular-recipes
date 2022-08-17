@@ -18,8 +18,6 @@ export class PasswordErrorStateMatcher implements ErrorStateMatcher {
 	styleUrls: ['./sign-up-form.component.scss'],
 })
 export class SignUpFormComponent {
-	public visible = false;
-	public changeType = false;
 	public passwordErrorMatcher = new PasswordErrorStateMatcher();
 	public signUpForm = new FormGroup(
 		{
@@ -64,11 +62,6 @@ export class SignUpFormComponent {
 		} catch (error) {
 			this.notifierService.notify('wrong', 'Somethings wrong :(');
 		}
-	}
-
-	public viewPass() {
-		this.visible = !this.visible;
-		this.changeType = !this.changeType;
 	}
 
 	private filterEmptyFields<T extends object>(data: T): Partial<T> {
