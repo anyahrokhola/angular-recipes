@@ -7,9 +7,15 @@ $seperator-color: #F4F4F5;
 }
 
 .recipe-wrapper {
-    
+    position: relative;
 	display: flex;
 	flex-direction: column;
+}
+
+.edit{
+    position: absolute;
+    top: 30px;
+    right: 0;
 }
 
 .name {

@@ -1,4 +1,5 @@
-<h2>Add your recipe</h2>
+<h2 *ngIf="!isEdit">Add your recipe</h2>
+<h2 *ngIf="isEdit">Edit your recipe</h2>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 	<div class="container">
@@ -19,7 +20,7 @@
 					<div class="input-wrapper">
 						<mat-form-field appearance="fill">
 							<mat-label>Name</mat-label>
-							
+
 							<input placeholder="Name" matInput formControlName="name" />
 							<mat-error ngxValidationMessages [for]="form.get('name')"></mat-error>
 						</mat-form-field>
@@ -156,7 +157,8 @@
 			<button *ngIf="cooking.length" type="button" class="button-action add" (click)="addCooking()">+</button>
 		</div>
 		<div class="button-wrapper">
-			<button btnOutline color="accent" size="lg" type="submit">Create</button>
+			<button *ngIf="!isEdit" btnOutline color="accent" size="lg" type="submit">Create</button>
+			<button *ngIf="isEdit" btnOutline color="accent" size="lg" type="submit">Edit</button>
 		</div>
 	</div>
 </form>

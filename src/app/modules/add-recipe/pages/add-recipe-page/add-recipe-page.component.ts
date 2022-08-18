@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ContentChild, TemplateRef } from '@angular/core';
+import { Component, ContentChild, OnInit, TemplateRef } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { RecipesRestService } from 'src/app/modules/recipes/services';
 import { OptionService } from 'src/app/services';
-import { SelectOption } from '../../../../models';
+import { Recipe, SelectOption } from '../../../../models';
 import { cookingForm } from '../../interfaces/recipe-cooking.form';
 import { ingredientsForm } from '../../interfaces/recipe-ingredients.form';
 
@@ -12,10 +14,12 @@ import { ingredientsForm } from '../../interfaces/recipe-ingredients.form';
 	templateUrl: './add-recipe-page.component.html',
 	styleUrls: ['./add-recipe-page.component.scss'],
 })
-export class AddRecipePageComponent<Value extends string | number = string | number> {
+export class AddRecipePageComponent<Value extends string | number = string | number> implements OnInit {
 	@ContentChild('customItem') public customItemRef?: TemplateRef<{ $implicit: SelectOption<Value>; index: number }>;
 
 	public url = '';
+	public item?: Recipe;
+	public isEdit?: boolean;
 	public readonly mealOptions = this.optionService.getMealOptions();
 	public readonly categoryOptions = this.optionService.getCategoryOptions();
 	public readonly difficultyOptions = this.optionService.getDifficultyOptions();
@@ -46,6 +50,8 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 	constructor(
 		private httpClient: HttpClient,
 		private optionService: OptionService,
+		public route: ActivatedRoute,
+		private recipesRestService: RecipesRestService,
 		private notifierService: NotifierService
 	) {}
 
@@ -55,6 +61,23 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 
 	public get cooking(): FormArray {
 		return this.form.get('cooking') as FormArray;
+	}
+
+	public ngOnInit(): void {
+		this.isEdit = this.route.snapshot.paramMap.get('id') ? true : false;
+		const id = this.route.snapshot.paramMap.get('id') as string;
+
+		if (this.isEdit) {
+			this.recipesRestService.getItem(id).subscribe(recipe => {
+				this.item = recipe;
+				this.form.get('name')?.setValue([recipe.name]);
+				this.form.get('category')?.setValue(recipe.category);
+				this.form.get('difficulty')?.setValue(recipe.difficulty);
+				this.form.get('meal')?.setValue(recipe.meal);
+				this.form.get('time')?.setValue([recipe.time]);
+				this.form.get('description')?.setValue([recipe.description]);
+			});
+		}
 	}
 
 	public getIngredientForm(index: number): FormGroup {
@@ -97,14 +120,18 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 	}
 
 	public async onSubmit() {
-		try {
-			const data = this.form.value;
-			await this.httpClient.post('/recipes', { data: data }).toPromise();
-			this.form.reset();
-			this.form.markAsUntouched();
-			this.notifierService.notify('success', 'Recipe successfully created');
-		} catch (error) {
-			this.notifierService.notify('error', 'Somethings wrong :(');
+		if (!this.isEdit) {
+			try {
+				const data = this.form.value;
+				await this.httpClient.post('/recipes', { data: data }).toPromise();
+				this.form.reset();
+				this.form.markAsUntouched();
+				this.notifierService.notify('success', 'Recipe successfully created');
+			} catch (error) {
+				this.notifierService.notify('error', 'Somethings wrong :(');
+			}
+		} else {
+			this.notifierService.notify('info', 'Edit:(');
 		}
 	}
 }

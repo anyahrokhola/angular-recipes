@@ -1,6 +1,8 @@
 <div *ngIf="item" class="container">
 	<div class="recipe-wrapper">
 		<span class="name">{{ item.name }}</span>
+
+		<button btnOutline color="accent" size="md" class="edit"routerLink="/recipes/{{ item.id }}/edit">Edit</button>
 		<div class="items-wrapper">
 			<div class="item">
 				<div class="item-icon"><i class="fa-solid fa-bowl-food"></i></div>
