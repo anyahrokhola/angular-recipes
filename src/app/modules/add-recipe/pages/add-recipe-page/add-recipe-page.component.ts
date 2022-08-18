@@ -4,6 +4,8 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { OptionService } from 'src/app/services';
 import { SelectOption } from '../../../../models';
+import { cookingForm } from '../../interfaces/recipe-cooking.form';
+import { ingredientsForm } from '../../interfaces/recipe-ingredients.form';
 
 @Component({
 	selector: 'add-recipe-page',
@@ -40,13 +42,12 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 			}),
 		]),
 	});
+
 	constructor(
 		private httpClient: HttpClient,
-		private notifierService: NotifierService,
-		private optionService: OptionService
-	) {
-		this.notifierService = notifierService;
-	}
+		private optionService: OptionService,
+		private notifierService: NotifierService
+	) {}
 
 	public get ingredients(): FormArray {
 		return this.form.get('ingredients') as FormArray;
@@ -80,22 +81,11 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 	}
 
 	public addIngredients() {
-		this.ingredients.push(
-			new FormGroup({
-				product: new FormControl(),
-				count: new FormControl(),
-				unit: new FormControl(),
-			})
-		);
+		this.ingredients.push(new FormGroup(ingredientsForm));
 	}
 
 	public addCooking() {
-		this.cooking.push(
-			new FormGroup({
-				step: new FormControl(),
-				cooking: new FormControl(),
-			})
-		);
+		this.cooking.push(new FormGroup(cookingForm));
 	}
 
 	public removeIngredient(index: number) {
