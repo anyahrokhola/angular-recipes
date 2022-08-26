@@ -4,15 +4,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-6">
-				<div class="img-wrapper">
-					<img *ngIf="url" [src]="url" alt="uploaded photo" />
-					<div class="upload-wrapper" *ngIf="!url">
-						<span class="upload-text">Add your image</span>
-						<i class="fa-solid fa-cloud-arrow-up"></i>
-					</div>
-					<button *ngIf="url" type="button" class="remove-icon" (click)="removeImage()">X</button>
-					<input formControlName="img" class="file" type="file" (change)="onSelectFile($event)" />
-				</div>
+				<upload-image formControlName="img"></upload-image>
 			</div>
 			<div class="col-6">
 				<div class="wrapper">
@@ -32,7 +24,7 @@
 									*ngFor="let option of categoryOptions; let i = index"
 									[value]="option.value"
 								>
-									<span>{{ option.value }}</span>
+									<span>{{ option.text }}</span>
 								</mat-option>
 							</mat-select>
 							<mat-error ngxValidationMessages [for]="form.get('category')"></mat-error>
@@ -46,7 +38,7 @@
 									*ngFor="let option of difficultyOptions; let i = index"
 									[value]="option.value"
 								>
-									<span>{{ option.value }}</span>
+									<span>{{ option.text }}</span>
 								</mat-option>
 							</mat-select>
 							<mat-error ngxValidationMessages [for]="form.get('difficulty')"></mat-error>
@@ -69,7 +61,7 @@
 										*ngFor="let option of mealOptions; let i = index"
 										[value]="option.value"
 									>
-										<span>{{ option.value }}</span>
+										<span>{{ option.text }}</span>
 									</mat-option>
 								</mat-select>
 								<mat-error ngxValidationMessages [for]="form.get('meal')"></mat-error>

@@ -1,4 +1,5 @@
-<img [src]="item.img.data?.url | assetsUrlOrEmpty" [alt]="item.name" />
+<button class="remove" (click)="removeRecipe(item.id)">X</button>
+<img [src]="item.img?.url | assetsUrlOrEmpty" [alt]="item.name" />
 <span class="title text-uppercase">{{ item.name }}</span>
 <span class="description">{{ item.description }}</span>
 <a class="text-uppercase" btnLink routerLink="/recipes/{{ item.id }}">More</a>
