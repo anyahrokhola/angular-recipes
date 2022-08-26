@@ -30,11 +30,19 @@ export class ParseInterceptor implements HttpInterceptor {
 			return body.map(item => this.parse(item));
 		}
 
+		if (this.hasBody(body)) {
+			return this.parse(body.data);
+		}
+
 		if (!this.hasAttributes(body)) {
 			return mapValues(body, value => this.parse(value));
 		}
 
 		return { id: body.id, ...mapValues(body.attributes, value => this.parse(value)) };
+	}
+
+	private hasBody(object: any): object is { data: any } {
+		return !!object?.data;
 	}
 
 	private hasAttributes(object: any): object is ApiResponseRawData<object> {

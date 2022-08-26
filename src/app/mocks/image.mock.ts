@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 import { ApiResponseRawData } from '../models/api';
 import { Image } from '../models/image';
 
-export const imageMock1: ApiResponseRawData<Image['data']> = {
+export const imageMock1: ApiResponseRawData<Image> = {
 	id: 5,
 	attributes: {
 		id: 5,
@@ -22,7 +22,7 @@ export const imageMock1: ApiResponseRawData<Image['data']> = {
 				url: '/uploads/thumbnail_cat3_b4b80842d0.jpeg',
 				width: 234,
 			},
-		} as Image['data']['formats'],
+		} as Image['formats'],
 		hash: 'cat3_b4b80842d0',
 		height: 183,
 		mime: 'image/jpeg',
@@ -36,9 +36,9 @@ export const imageMock1: ApiResponseRawData<Image['data']> = {
 		width: 275,
 	},
 };
-export const parsedImageMock1: Image = { data: { ...imageMock1.attributes } };
+export const parsedImageMock1: Image = { ...imageMock1.attributes };
 
-export const imageMock2: ApiResponseRawData<Image['data']> = {
+export const imageMock2: ApiResponseRawData<Image> = {
 	id: 4,
 	attributes: {
 		id: 4,
@@ -58,7 +58,7 @@ export const imageMock2: ApiResponseRawData<Image['data']> = {
 				url: '/uploads/thumbnail_borsh_9f126eb757.jpg',
 				width: 200,
 			},
-		} as Image['data']['formats'],
+		} as Image['formats'],
 		hash: 'borsh_9f126eb757',
 		height: 500,
 		mime: 'image/jpeg',
@@ -73,6 +73,6 @@ export const imageMock2: ApiResponseRawData<Image['data']> = {
 	},
 };
 
-export const parsedImageMock2: Image = { data: { ...imageMock2.attributes } };
+export const parsedImageMock2: Image = { ...imageMock2.attributes };
 
 export const ImageMock = () => faker.helpers.arrayElement([parsedImageMock1, parsedImageMock2]);
