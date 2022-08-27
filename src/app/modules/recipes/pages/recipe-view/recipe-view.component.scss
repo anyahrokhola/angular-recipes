@@ -2,12 +2,18 @@
 
 $seperator-color: #F4F4F5;
 
+.edit{
+    position: absolute;
+    top: 40px;
+    right: 0;
+}
+
 .name{
     color: $color-accent;
 }
 
 .recipe-wrapper {
-    
+    position: relative;
 	display: flex;
 	flex-direction: column;
 }
