@@ -1,13 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ContentChild, OnInit, TemplateRef } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { RecipesRestService } from 'src/app/modules/recipes/services';
 import { OptionService } from 'src/app/services';
 import { Recipe, SelectOption } from '../../../../models';
-import { cookingForm } from '../../interfaces/recipe-cooking.form';
-import { ingredientsForm } from '../../interfaces/recipe-ingredients.form';
 
 @Component({
 	selector: 'add-recipe-page',
@@ -25,12 +23,12 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 
 	public readonly form = new FormGroup({
 		img: new FormControl(),
-		meal: new FormControl(),
-		category: new FormControl(),
-		difficulty: new FormControl(),
-		name: new FormControl(),
-		description: new FormControl(),
-		time: new FormControl(),
+		meal: new FormControl('', Validators.required),
+		category: new FormControl('', Validators.required),
+		difficulty: new FormControl('', Validators.required),
+		name: new FormControl('', Validators.required),
+		description: new FormControl('', [Validators.required, Validators.maxLength(250)]),
+		time: new FormControl('', Validators.required),
 		ingredients: new FormArray([
 			new FormGroup({
 				product: new FormControl(),
@@ -88,11 +86,18 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 	}
 
 	public addIngredients() {
-		this.ingredients.push(new FormGroup(ingredientsForm));
+		this.ingredients.push(
+			new FormGroup({ product: new FormControl(''), count: new FormControl(''), unit: new FormControl('') })
+		);
 	}
 
 	public addCooking() {
-		this.cooking.push(new FormGroup(cookingForm));
+		this.cooking.push(
+			new FormGroup({
+				step: new FormControl(''),
+				cooking: new FormControl(''),
+			})
+		);
 	}
 
 	public removeIngredient(index: number) {
@@ -104,6 +109,10 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 	}
 
 	public async onSubmit() {
+		if (this.form.invalid) {
+			this.notifierService.notify('warning', 'Please, fill the fields');
+			return;
+		}
 		const data = this.form.value;
 		if (!this.isEdit) {
 			try {
