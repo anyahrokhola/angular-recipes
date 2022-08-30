@@ -1,7 +1,8 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-export const ingredientsForm = {
-	product: new FormControl(),
-	count: new FormControl(),
-	unit: new FormControl(),
-};
+export const getIngredientsForm = () =>
+	new FormGroup({
+		product: new FormControl('', Validators.required),
+		count: new FormControl('', Validators.required),
+		unit: new FormControl('', Validators.required),
+	});

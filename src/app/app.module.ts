@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
 import { ButtonModule } from './modules/button/button.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from '@env/environment';
 import { ModalModule } from './modules/modal/modal.module';
@@ -31,6 +31,12 @@ import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 
 import { ValidationInterceptor } from './modules/validation';
 import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
+
+export class DirtyTouchedErrorStateMatcher implements ErrorStateMatcher {
+	public isErrorState(control: AbstractControl | null): boolean {
+		return !!(control && control.invalid && (control.dirty || control.touched));
+	}
+}
 
 @NgModule({
 	declarations: [AppComponent],
@@ -78,7 +84,7 @@ import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './int
 		{ provide: HTTP_INTERCEPTORS, useClass: ParseInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ValidationInterceptor, multi: true },
 
-		{ provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+		{ provide: ErrorStateMatcher, useClass: DirtyTouchedErrorStateMatcher },
 	],
 	bootstrap: [AppComponent],
 })

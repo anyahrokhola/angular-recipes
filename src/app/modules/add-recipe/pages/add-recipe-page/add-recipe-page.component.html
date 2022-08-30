@@ -92,23 +92,26 @@
 					</button>
 				</div>
 				<li *ngFor="let ingredientForm of ingredients.controls; let i = index">
-					<div class="ingredients-wrapper" [formGroup]="getIngredientForm(i)">
+					<div class="ingredients-wrapper" [formGroupName]="i">
 						<div class="input-wrapper">
 							<mat-form-field appearance="fill">
 								<mat-label>Name</mat-label>
 								<input formControlName="product" matInput />
+								<mat-error ngxValidationMessages [for]="ingredientForm.get('product')"></mat-error>
 							</mat-form-field>
 						</div>
 						<div class="input-wrapper">
 							<mat-form-field appearance="fill">
 								<mat-label>Count</mat-label>
 								<input formControlName="count" matInput />
+								<mat-error ngxValidationMessages [for]="ingredientForm.get('count')"></mat-error>
 							</mat-form-field>
 						</div>
 						<div class="input-wrapper">
 							<mat-form-field appearance="fill">
 								<mat-label>Unit</mat-label>
 								<input formControlName="unit" matInput />
+								<mat-error ngxValidationMessages [for]="ingredientForm.get('unit')"></mat-error>
 							</mat-form-field>
 						</div>
 						<button class="button-action remove" (click)="removeIngredient(i)">X</button>
@@ -130,14 +133,9 @@
 					<div class="cooking-wrapper" [formGroup]="getCookingForm(i)">
 						<div class="input-wrapper">
 							<mat-form-field appearance="fill">
-								<mat-label>Step</mat-label>
-								<input formControlName="step" matInput />
-							</mat-form-field>
-						</div>
-						<div class="input-wrapper">
-							<mat-form-field appearance="fill">
 								<mat-label>Description</mat-label>
 								<textarea formControlName="cooking" matInput></textarea>
+								<mat-error ngxValidationMessages [for]="cookingForm.get('cooking')"></mat-error>
 							</mat-form-field>
 						</div>
 						<button type="button" class="button-action remove" (click)="removeCooking(i)">X</button>
