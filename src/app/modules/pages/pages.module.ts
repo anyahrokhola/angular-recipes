@@ -14,11 +14,19 @@ import { CoreModule } from 'src/app/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from 'angular-notifier';
 import { MatInputModule } from '@angular/material/input';
+import { PasswordTogleDirective } from './directives/password-togle/password-togle.directive';
 import { ValidationModule } from '../validation/validation.module';
 import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 
 @NgModule({
-	declarations: [HeaderComponent, FooterComponent, SocialMediaComponent, RecipeItemComponent, SignUpFormComponent],
+	declarations: [
+		HeaderComponent,
+		FooterComponent,
+		SocialMediaComponent,
+		RecipeItemComponent,
+		SignUpFormComponent,
+		PasswordTogleDirective,
+	],
 	imports: [
 		BrowserModule,
 		CommonModule,

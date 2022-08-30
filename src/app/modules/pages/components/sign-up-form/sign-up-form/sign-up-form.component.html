@@ -27,7 +27,7 @@
 				<div class="col-12">
 					<mat-form-field appearance="fill">
 						<mat-label>Password</mat-label>
-						<input [type]="changeType ? 'text' : 'password'" matInput formControlName="password" />
+						<input  passwordTogle matInput formControlName="password" />
 						<mat-error ngxValidationMessages [for]="passwordControl"></mat-error>
 					</mat-form-field>
 				</div>
@@ -35,14 +35,11 @@
 					<mat-form-field appearance="fill">
 						<mat-label>Confirm password</mat-label>
 						<input
-							[type]="changeType ? 'text' : 'password'"
+							passwordTogle
 							matInput
 							formControlName="confirmPassword"
 							[errorStateMatcher]="passwordErrorMatcher"
 						/>
-						<span class="eyeicon" (click)="viewPass()">
-							<i [ngClass]="visible ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
-						</span>
 						<mat-error ngxValidationMessages [for]="confirmPasswordControl"></mat-error>
 						<mat-error *ngIf="signUpForm.errors?.['differentPasswords'] && !confirmPasswordControl.errors">
 							Passwords are different

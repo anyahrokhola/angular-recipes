@@ -28,9 +28,8 @@ import { HomeModule } from './modules/home/home.module';
 import { RecipesModule } from './modules/recipes/recipes.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
-
-import { ValidationInterceptor } from './modules/validation';
 import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
+import { ValidationInterceptor } from './modules/validation';
 
 export class DirtyTouchedErrorStateMatcher implements ErrorStateMatcher {
 	public isErrorState(control: AbstractControl | null): boolean {

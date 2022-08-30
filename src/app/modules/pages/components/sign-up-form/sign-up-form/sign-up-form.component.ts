@@ -18,8 +18,6 @@ export class PasswordErrorStateMatcher implements ErrorStateMatcher {
 	styleUrls: ['./sign-up-form.component.scss'],
 })
 export class SignUpFormComponent {
-	public visible = false;
-	public changeType = false;
 	public passwordErrorMatcher = new PasswordErrorStateMatcher();
 	public signUpForm = new FormGroup(
 		{
@@ -32,9 +30,7 @@ export class SignUpFormComponent {
 		{ validators: PasswordValidators.controlValueAreEqual('password', 'confirmPassword') }
 	);
 
-	constructor(private httpClient: HttpClient, private notifierService: NotifierService) {
-		this.notifierService = notifierService;
-	}
+	constructor(private httpClient: HttpClient, private notifierService: NotifierService) {}
 
 	public get nameControl(): FormControl {
 		return this.signUpForm.controls['name'] as FormControl;
@@ -66,11 +62,6 @@ export class SignUpFormComponent {
 		} catch (error) {
 			this.notifierService.notify('wrong', 'Somethings wrong :(');
 		}
-	}
-
-	public viewPass() {
-		this.visible = !this.visible;
-		this.changeType = !this.changeType;
 	}
 
 	private filterEmptyFields<T extends object>(data: T): Partial<T> {
