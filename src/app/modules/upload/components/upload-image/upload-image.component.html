@@ -1,0 +1,7 @@
+<img *ngIf="url" [src]="url" alt="uploaded photo" />
+<div class="upload-wrapper" *ngIf="!url">
+	<span class="upload-text">Add your image</span>
+	<i class="fa-solid fa-cloud-arrow-up"></i>
+</div>
+<button *ngIf="url" type="button" class="remove-icon" (click)="removeImage()">X</button>
+<upload [formControl]="imgControl"></upload>

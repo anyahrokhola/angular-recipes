@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
+import { NotifierModule } from 'angular-notifier';
+import { UploadModule } from '../upload/upload.module';
 
 @NgModule({
 	declarations: [AddRecipePageComponent],
@@ -19,6 +21,8 @@ import { NgxValidationMessagesModule } from '@lagoshny/ngx-validation-messages';
 		MatFormFieldModule,
 		MatSelectModule,
 		NgxValidationMessagesModule,
+		NotifierModule,
+		UploadModule,
 	],
 })
 export class AddRecipeModule {}

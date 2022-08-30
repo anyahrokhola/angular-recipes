@@ -1,17 +1,10 @@
-<h2>Add your recipe</h2>
+<h2 *ngIf="!isEdit">Add your recipe</h2>
+<h2 *ngIf="isEdit">Edit {{ item?.name }}</h2>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 	<div class="container">
 		<div class="row">
 			<div class="col-6">
-				<div class="img-wrapper">
-					<img [src]="url ? url : ' '" />
-					<div class="upload-wrapper" *ngIf="!url">
-						<span class="upload-text">Add your image</span>
-						<i class="fa-solid fa-cloud-arrow-up"></i>
-					</div>
-					<button *ngIf="url" type="button" class="remove-icon" (click)="removeImage()">X</button>
-					<input formControlName="img" class="file" type="file" (change)="onSelectFile($event)" />
-				</div>
+				<upload-image formControlName="img"></upload-image>
 			</div>
 			<div class="col-6">
 				<div class="wrapper">
@@ -30,7 +23,7 @@
 									*ngFor="let option of categoryOptions; let i = index"
 									[value]="option.value"
 								>
-									<span>{{ option.value }}</span>
+									<span>{{ option.text }}</span>
 								</mat-option>
 							</mat-select>
 							<mat-error ngxValidationMessages [for]="form.get('category')"></mat-error>
@@ -44,7 +37,7 @@
 									*ngFor="let option of difficultyOptions; let i = index"
 									[value]="option.value"
 								>
-									<span>{{ option.value }}</span>
+									<span>{{ option.text }}</span>
 								</mat-option>
 							</mat-select>
 							<mat-error ngxValidationMessages [for]="form.get('difficulty')"></mat-error>
@@ -55,19 +48,19 @@
 						<div class="input-wrapper">
 							<mat-form-field appearance="fill">
 								<mat-label>Time</mat-label>
-								<input placeholder="Enter time of cooking" matInput formControlName="time" />
-								<mat-error ngxValidationMessages [for]="form.get('category')"></mat-error>
+								<input type="number" placeholder="Enter minutes of cooking" matInput formControlName="time" />
+								<mat-error ngxValidationMessages [for]="form.get('time')"></mat-error>
 							</mat-form-field>
 						</div>
 						<div class="input-wrapper">
 							<mat-form-field appearance="fill">
 								<mat-label>Meal</mat-label>
 								<mat-select formControlName="meal">
-									<mat-option
+									<mat-option	
 										*ngFor="let option of mealOptions; let i = index"
 										[value]="option.value"
 									>
-										<span>{{ option.value }}</span>
+										<span>{{ option.text }}</span>
 									</mat-option>
 								</mat-select>
 								<mat-error ngxValidationMessages [for]="form.get('meal')"></mat-error>
@@ -99,23 +92,26 @@
 					</button>
 				</div>
 				<li *ngFor="let ingredientForm of ingredients.controls; let i = index">
-					<div class="ingredients-wrapper" [formGroup]="getIngredientForm(i)">
+					<div class="ingredients-wrapper" [formGroupName]="i">
 						<div class="input-wrapper">
 							<mat-form-field appearance="fill">
 								<mat-label>Name</mat-label>
 								<input formControlName="product" matInput />
+								<mat-error ngxValidationMessages [for]="ingredientForm.get('product')"></mat-error>
 							</mat-form-field>
 						</div>
 						<div class="input-wrapper">
 							<mat-form-field appearance="fill">
 								<mat-label>Count</mat-label>
 								<input formControlName="count" matInput />
+								<mat-error ngxValidationMessages [for]="ingredientForm.get('count')"></mat-error>
 							</mat-form-field>
 						</div>
 						<div class="input-wrapper">
 							<mat-form-field appearance="fill">
 								<mat-label>Unit</mat-label>
 								<input formControlName="unit" matInput />
+								<mat-error ngxValidationMessages [for]="ingredientForm.get('unit')"></mat-error>
 							</mat-form-field>
 						</div>
 						<button class="button-action remove" (click)="removeIngredient(i)">X</button>
@@ -137,14 +133,9 @@
 					<div class="cooking-wrapper" [formGroup]="getCookingForm(i)">
 						<div class="input-wrapper">
 							<mat-form-field appearance="fill">
-								<mat-label>Step</mat-label>
-								<input formControlName="step" matInput />
-							</mat-form-field>
-						</div>
-						<div class="input-wrapper">
-							<mat-form-field appearance="fill">
 								<mat-label>Description</mat-label>
-								<input formControlName="cooking" matInput />
+								<textarea formControlName="cooking" matInput></textarea>
+								<mat-error ngxValidationMessages [for]="cookingForm.get('cooking')"></mat-error>
 							</mat-form-field>
 						</div>
 						<button type="button" class="button-action remove" (click)="removeCooking(i)">X</button>
@@ -154,7 +145,9 @@
 			<button *ngIf="cooking.length" type="button" class="button-action add" (click)="addCooking()">+</button>
 		</div>
 		<div class="button-wrapper">
-			<button btnOutline color="accent" size="lg" type="submit">Create</button>
+			<button *ngIf="!isEdit" btnOutline color="accent" size="lg" type="submit">Create</button>
+			<button *ngIf="isEdit" btnOutline color="accent" size="lg" type="submit">Edit</button>
 		</div>
 	</div>
 </form>
+

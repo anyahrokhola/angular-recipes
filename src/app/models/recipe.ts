@@ -6,7 +6,7 @@ export interface Recipe {
 	description: string;
 	difficulty: Difficulty;
 	id: number;
-	img: Image | { data: null };
+	img: Nullable<Image>;
 	ingredients: RecipeIngredient[];
 	meal: Meal;
 	name: string;

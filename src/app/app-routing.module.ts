@@ -11,6 +11,7 @@ const routes: Routes = [
 	{ path: 'recipes', component: RecipeListComponent, pathMatch: 'full' },
 	{ path: 'recipes/add', component: AddRecipePageComponent, pathMatch: 'full' },
 	{ path: 'recipes/:id', component: RecipeViewComponent, pathMatch: 'full' },
+	{ path: 'recipes/:id/edit', component: AddRecipePageComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

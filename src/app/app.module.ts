@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,7 +19,7 @@ import { AppComponent } from './app.component';
 import { ButtonModule } from './modules/button/button.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from '@env/environment';
 import { ModalModule } from './modules/modal/modal.module';
@@ -29,7 +30,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
 import { ValidationInterceptor } from './modules/validation';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+
+export class DirtyTouchedErrorStateMatcher implements ErrorStateMatcher {
+	public isErrorState(control: AbstractControl | null): boolean {
+		return !!(control && control.invalid && (control.dirty || control.touched));
+	}
+}
 
 @NgModule({
 	declarations: [AppComponent],
@@ -77,7 +83,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 		{ provide: HTTP_INTERCEPTORS, useClass: ParseInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ValidationInterceptor, multi: true },
 
-		{ provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+		{ provide: ErrorStateMatcher, useClass: DirtyTouchedErrorStateMatcher },
 	],
 	bootstrap: [AppComponent],
 })

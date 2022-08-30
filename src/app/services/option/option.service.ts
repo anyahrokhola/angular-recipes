@@ -1,36 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Category, Difficulty, Meal, SelectOption } from '../../models';
+import { SelectOption } from '../../models';
+import { Category, Difficulty, Meal } from '../../models';
+import { categoryI18n } from 'src/app/i18n/category.i18n';
+import { difficultyI18n } from 'src/app/i18n/difficulty.i18n';
+import { mealI18n } from 'src/app/i18n/meal.i18n';
+import { map } from 'lodash';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class OptionService {
 	public getCategoryOptions(): Array<SelectOption<Category>> {
-		return [
-			{ value: Category.FirstCourse, text: 'FirstCourse' },
-			{ value: Category.SecondCourse, text: 'SecondCourse' },
-			{ value: Category.SaladAndSnack, text: 'SaladAndSnack' },
-			{ value: Category.Baking, text: 'Baking' },
-			{ value: Category.Cakes, text: 'Cakes' },
-			{ value: Category.Desserts, text: 'Desserts' },
-			{ value: Category.Drinks, text: 'Drinks' },
-		];
+		return OptionService.transformToSelectOptions(categoryI18n);
 	}
 
 	public getDifficultyOptions(): Array<SelectOption<Difficulty>> {
-		return [
-			{ value: Difficulty.Easy, text: 'Easy' },
-			{ value: Difficulty.Medium, text: 'Medium' },
-			{ value: Difficulty.Hard, text: 'Hard' },
-		];
+		return OptionService.transformToSelectOptions(difficultyI18n);
 	}
 
 	public getMealOptions(): Array<SelectOption<Meal>> {
-		return [
-			{ value: Meal.Breakfast, text: 'Breakfast' },
-			{ value: Meal.Lunch, text: 'Lunch' },
-			{ value: Meal.Dinner, text: 'Dinner' },
-			{ value: Meal.Snack, text: 'Snack' },
-		];
+		return OptionService.transformToSelectOptions(mealI18n);
+	}
+
+	public static transformToSelectOptions<E extends string | number>(data: Record<E, string>): Array<SelectOption<E>> {
+		return map(data, (text, enumValue) => ({ value: enumValue, text })) as Array<SelectOption<E>>;
 	}
 }
