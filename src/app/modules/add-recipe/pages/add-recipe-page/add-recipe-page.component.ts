@@ -25,12 +25,12 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 
 	public readonly form = new FormGroup({
 		img: new FormControl(),
-		meal: new FormControl('', Validators.required),
-		category: new FormControl('', Validators.required),
-		difficulty: new FormControl('', Validators.required),
+		meal: new FormControl(null, Validators.required),
+		category: new FormControl(null, Validators.required),
+		difficulty: new FormControl(null, Validators.required),
 		name: new FormControl('', Validators.required),
 		description: new FormControl('', [Validators.required, Validators.maxLength(250)]),
-		time: new FormControl('', Validators.required),
+		time: new FormControl(null, Validators.required),
 		ingredients: new FormArray([getIngredientsForm()]),
 		cooking: new FormArray([getCookingForm({ step: 1 })]),
 	});
