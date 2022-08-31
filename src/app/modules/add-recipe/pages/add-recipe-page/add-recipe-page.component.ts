@@ -68,10 +68,6 @@ export class AddRecipePageComponent<Value extends string | number = string | num
 		}
 	}
 
-	public getCookingForm(index: number): FormGroup {
-		return this.cooking.get(index.toString()) as FormGroup;
-	}
-
 	public addIngredients() {
 		this.ingredients.push(getIngredientsForm());
 	}
