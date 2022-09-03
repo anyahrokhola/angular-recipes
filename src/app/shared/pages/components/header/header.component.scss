@@ -1,4 +1,4 @@
-@import 'variables/index';
+@import '../../../../../assets/styles/variables/index';
 
 :host {
 	padding: 5px 0;
@@ -21,7 +21,7 @@ img {
 		font-size: 18px;
 		font-weight: 500;
 		color: black;
-		
+
 
 		&.active {
 			padding-bottom: 3px;

@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { NotifierModule } from 'angular-notifier';
-import { ModalModule } from 'src/app/modules/modal/modal.module';
+import { ModalModule } from '@shared/modal/modal.module';
 
 import { SignUpFormComponent } from './sign-up-form.component';
 
