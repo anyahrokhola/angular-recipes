@@ -2,13 +2,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { of } from 'rxjs';
 
-import { RecipesRestService } from '../../../recipes/services';
+import { RecipesRestService } from '../../services';
 
-import { RecipeItemComponent } from 'src/app/modules/pages/components/recipe-item/recipe-item.component';
+import { RecipeItemComponent } from '@shared/pages/components/recipe-item/recipe-item.component';
 
 import { AssetsUrlOrEmptyPipe } from '../../../../core/pipes/assets-url-or-empty/assets-url-or-empty.pipe';
 
-import { RecipeMock } from '../../../recipes/mocks/recipe.mock';
+import { RecipeMock } from '../../mocks/recipe.mock';
 import { RecipeListComponent } from './recipe-list.component';
 
 describe('RecipeListComponent', () => {

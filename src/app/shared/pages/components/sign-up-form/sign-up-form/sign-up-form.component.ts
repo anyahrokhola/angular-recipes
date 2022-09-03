@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular
 import { ErrorStateMatcher } from '@angular/material/core';
 import { NotifierService } from 'angular-notifier';
 import { pickBy } from 'lodash';
-import { PasswordValidators } from 'src/app/modules/validation/validators/passwords-validators';
+import { PasswordValidators } from '@shared/validation/validators/passwords-validators';
 
 export class PasswordErrorStateMatcher implements ErrorStateMatcher {
 	public isErrorState(control: FormControl | null, form: FormGroupDirective): boolean {

@@ -6,7 +6,7 @@ import { RecipesRestService } from '../../../recipes/services';
 
 import { HomeComponent } from './home.component';
 import { IntroComponent } from '../../components/intro/intro.component';
-import { RecipeItemComponent } from 'src/app/modules/pages/components/recipe-item/recipe-item.component';
+import { RecipeItemComponent } from '@shared/pages/components/recipe-item/recipe-item.component';
 
 import { AssetsUrlOrEmptyPipe } from '../../../../core/pipes/assets-url-or-empty/assets-url-or-empty.pipe';
 

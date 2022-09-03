@@ -9,10 +9,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ModalModule } from './modules/modal/modal.module';
+import { ModalModule } from '@shared/modal/modal.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { IntroComponent } from './modules/home/components/intro/intro.component';
-import { RecipeItemComponent } from './modules/pages/components/recipe-item/recipe-item.component';
+import { RecipeItemComponent } from '@shared/pages/components/recipe-item/recipe-item.component';
 
 describe('AppComponent', () => {
 	let spectator: Spectator<AppComponent>;

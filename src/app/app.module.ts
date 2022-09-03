@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { NgxsModule } from '@ngxs/store';
-import { TooltipModule } from './modules/tooltip/tooltip.module';
+import { TooltipModule } from '@shared/tooltip/tooltip.module';
 import { NotifierModule } from 'angular-notifier';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
@@ -16,20 +16,20 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 import { AppComponent } from './app.component';
 
-import { ButtonModule } from './modules/button/button.module';
+import { ButtonModule } from '@shared/button/button.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from '@env/environment';
-import { ModalModule } from './modules/modal/modal.module';
-import { PagesModule } from './modules/pages/pages.module';
+import { ModalModule } from '@shared/modal/modal.module';
+import { PagesModule } from '@shared/pages/pages.module';
 import { HomeModule } from './modules/home/home.module';
 import { RecipesModule } from './modules/recipes/recipes.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddRecipeModule } from './modules/add-recipe/add-recipe.module';
 import { ApiInterceptor, AutoPopulateInterceptor, ParseInterceptor } from './interceptors';
-import { ValidationInterceptor } from './modules/validation';
+import { ValidationInterceptor } from '@shared/validation';
 
 export class DirtyTouchedErrorStateMatcher implements ErrorStateMatcher {
 	public isErrorState(control: AbstractControl | null): boolean {

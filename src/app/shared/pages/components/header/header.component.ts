@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalService } from 'src/app/modules/modal/services/modal.service';
+import { ModalService } from '@shared/modal/services/modal.service';
 import { SignUpFormComponent } from '../sign-up-form/sign-up-form/sign-up-form.component';
 
 @Component({
